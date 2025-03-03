@@ -1,0 +1,60 @@
+/* StatCards.css */
+html {
+    font-size: 16px; /* Sets the base font size for the whole document */
+  }
+
+body {
+    margin: 0;
+    font-family: 'Inter', 'Roboto', 'Open Sans', sans-serif;
+    background-color: #f1f6fb; /* Primary background */
+    color: #333333;            /* Neutral text color */
+  }
+  
+.card1 {
+    padding: 16px;
+    background-color: #ffffff;
+    /* Any additional styling for card1 */
+  }
+  
+.card1-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns: left and right */
+    gap: 16px;
+}
+
+.card1-left {
+    display: flex;
+}
+
+.card1-right {
+/* Right column will house the vertical stat boxes */
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.stats-container {
+display: flex;
+flex-direction: column;
+gap: 12px;
+width: 100%;
+}
+
+.stat-box {
+background-color: #f8ebfd;  /* Example background */
+padding: 10px;
+border: 1px solid #f5e0fc;
+border-radius: 10px;
+text-align: center;
+}
+
+.stat-number {
+font-size: 2rem;  /* Large number */
+font-weight: bold;
+margin-bottom: 4px;
+}
+
+.stat-label {
+font-size: 0.9rem; /* Smaller label */
+color: #666;
+}

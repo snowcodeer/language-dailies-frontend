@@ -1,0 +1,214 @@
+/* BentoBox.css */
+html {
+    font-size: 16px; /* Sets the base font size for the whole document */
+  }
+
+body {
+    margin: 0;
+    font-family: 'Inter', 'Roboto', 'Open Sans', sans-serif;
+    background-color: #f1f6fb; /* Primary background */
+    color: #333333;            /* Neutral text color */
+  }
+  
+
+h1 {
+    color: #333;        
+    font-size: 1.4em;
+    margin-bottom: 20px; 
+  }
+
+h2 {
+    color: #333;        
+    font-size: 1.2rem;
+    text-align: left;
+    display: flex;
+    align-items: left;
+    justify-content: space-between;
+    margin-right: 16px;
+    margin-bottom: 20px; 
+}
+
+p {
+font-size: 1rem;
+line-height: 1.5;
+margin: 0 0 16px;
+} 
+
+.bento-container {
+    height: 94vh;
+    min-height: 80vh; /* 80% of viewport height */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 25px;
+    padding: 20px;
+    grid-template-areas:
+      "card1 card1 card2"
+      "card3 card4 card6"
+      "card3 card5 card6";
+  }
+  
+  .bento-item {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 15px 36px;
+    padding-bottom: 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .inner-box {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    background-color: #f6f2fd; 
+    border: 1px solid #f7effc;
+    border-radius: 10px;
+    margin-top: 0px;
+    padding: 10px 30px;
+    overflow-y: auto; /* Enables vertical scrolling if content overflows */
+  }
+
+  .conjugation-box {
+    background-color: #effef0; 
+    border: 1px solid #d7fbdb;
+  }
+
+  .translation-boxes {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; 
+  }
+  
+  .translation-box {
+    display: flex;
+    justify-content: space-between; /* Spanish word on left, English word on right */
+    align-items: center;
+    padding: 4px;
+    padding-inline: 15px;
+    border: 1px solid #d3e4fb;
+    border-radius: 20px;
+    background-color: #e7f1ff;
+  }
+  
+  .english-word {
+    font-style: italic;
+    color: #909090;
+  }
+  
+  .spotify-embed {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }  
+
+  .reflection-textarea {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    font-family: 'Inter', 'Roboto', 'Open Sans', sans-serif;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #fdefd1;
+    background: #fdf7ea;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 1rem;
+    resize: none;
+  }
+  
+  .reflection-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;  
+    margin: 0 auto;   
+    margin-top: 6px;
+    
+  }
+  
+  .word-count {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;      
+  }
+  
+  .reflection-buttons {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .reflection-btn {
+    padding-top: 5px;
+    padding-bottom: 1px;
+    padding-left: 6px;
+    padding-right: 5px;
+    border: none;
+    border-radius: 20px;
+    background-color: #3A8FB7;
+    color: #fff;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  
+  .reflection-btn.correction {
+    background-color: #67cf6b;
+  }
+  
+  .reflection-btn.historial {
+    background-color: #bebebe;
+  }
+  
+  /* Specific grid area assignments and colors */
+  .card1 {
+    grid-area: card1;
+  }
+  
+  .card2 {
+    grid-area: card2;
+  }
+
+  .card3 {
+    grid-area: card3;
+    display: flex;
+    gap: 25px;
+    flex-direction: column;
+    height: 100%; 
+  }
+  .card-top {
+    flex: 2;  /* Takes twice the space compared to the bottom */
+    padding: 12px 36px;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+  .card-bottom {
+    flex: 1;
+    padding: 12px 36px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .card4 {
+    grid-area: card4;
+  }
+
+  .card5 {
+    grid-area: card5;
+  }
+
+  .card6 {
+    grid-area: card6;
+  }
+
+  
+  
