@@ -1,6 +1,7 @@
 // src/components/BentoBox.js
 import React, { useState } from 'react';
-import './BentoBox.css';
+import '../styles/BentoBox.css';
+import ReflectionBox from './ReflectionBox';
 import { FaMusic, FaQuoteRight, FaBook, FaComments, FaPencilAlt, FaLightbulb, FaCheck, FaHistory } from 'react-icons/fa';
 
 const BentoBox = () => {
@@ -26,20 +27,20 @@ const BentoBox = () => {
           <span className="heading-text">Vocabulario de hoy</span>
           <FaBook style={{ color: '#219fed' }}/>
         </h2>
-        <div className="translation-boxes">
-            <div className="translation-box">
+        <div className="vocab-boxes">
+            <div className="vocab-box">
                 <span className="spanish-word">Hola</span>
                 <span className="english-word"><em>Hello</em></span>
             </div>
-            <div className="translation-box">
+            <div className="vocab-box">
                 <span className="spanish-word">Adiós</span>
                 <span className="english-word"><em>Goodbye</em></span>
             </div>
-            <div className="translation-box">
+            <div className="vocab-box">
                 <span className="spanish-word">Gracias</span>
                 <span className="english-word"><em>Thank you</em></span>
             </div>
-            <div className="translation-box">
+            <div className="vocab-box">
                 <span className="spanish-word">Por favor</span>
                 <span className="english-word"><em>Please</em></span>
             </div>
@@ -48,27 +49,8 @@ const BentoBox = () => {
 
       <div className="card3">
         <div className="card-top">
-          <h2>
-            <span className="heading-text">Reflexión diaria</span>
-            <FaLightbulb style={{ color: '#faae3c' }}/>
-          </h2>
-          {/* Multi-line text area for reflection */}
-          <textarea
-            className="reflection-textarea"
-            placeholder="Escribe tu reflexión aquí, al menos 80 palabras. ¡Puedes escribir sobre lo que quieras! Mientras que esté correcto..."
-            value={reflection}
-            onChange={handleReflectionChange}
-          ></textarea>
-          {/* New container for word count and buttons */}
-          <div className="reflection-controls">
-            <p className="word-count">Palabras: {wordCount}</p>
-            <div className="reflection-buttons">
-              <button className="reflection-btn historial"><FaHistory /></button>
-              <button className="reflection-btn correction"><FaCheck /></button>
-            </div>
-          </div>
+          <ReflectionBox />
         </div>
-
         <div className="card-bottom">
           <h2>
             <span className="heading-text">Sugerencia de canción de hoy</span>
@@ -121,10 +103,7 @@ const BentoBox = () => {
         </div>
       </div>
 
-      
-
-
-
+  
     </div>
   );
 };

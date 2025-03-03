@@ -1,4 +1,18 @@
-/* BentoBox.css */
+:root {
+  --primary-bg: #F8F9FA;
+  --card-bg: #FFFFFF;
+  --accent-green: #24A148;
+  --accent-blue: #3A8FB7;
+  --accent-yellow: #faae3c;
+  --accent-purple: #000;
+  --pastel-green: #effef0;
+  --pastel-blue: #e7f1ff;
+  --pastel-yellow: #fdf7ea;
+  --pastel-purple: #f6f2fd;
+  --neutral-text: #333333;
+  --grey-text: #909090;
+}
+
 html {
     font-size: 16px; /* Sets the base font size for the whole document */
   }
@@ -7,18 +21,18 @@ body {
     margin: 0;
     font-family: 'Inter', 'Roboto', 'Open Sans', sans-serif;
     background-color: #f1f6fb; /* Primary background */
-    color: #333333;            /* Neutral text color */
+    color: var(--neutral-text);            /* Neutral text color */
   }
   
 
 h1 {
-    color: #333;        
+    color: var(--neutral-text);        
     font-size: 1.4em;
     margin-bottom: 20px; 
   }
 
 h2 {
-    color: #333;        
+    color: var(--neutral-text);        
     font-size: 1.2rem;
     text-align: left;
     display: flex;
@@ -49,7 +63,7 @@ margin: 0 0 16px;
   }
   
   .bento-item {
-    background: #ffffff;
+    background: var(--card-bg);
     border-radius: 10px;
     padding: 15px 36px;
     padding-bottom: 40px;
@@ -64,8 +78,8 @@ margin: 0 0 16px;
     justify-content: space-between;
     width: 100%;
     height: 100%;
-    background-color: #f6f2fd; 
-    border: 1px solid #f7effc;
+    background-color: var(--pastel-purple);
+    border: none;
     border-radius: 10px;
     margin-top: 0px;
     padding: 10px 30px;
@@ -73,30 +87,30 @@ margin: 0 0 16px;
   }
 
   .conjugation-box {
-    background-color: #effef0; 
-    border: 1px solid #d7fbdb;
+    background-color: var(--pastel-green); 
+    border: none;
   }
 
-  .translation-boxes {
+  .vocab-boxes {
     display: flex;
     flex-direction: column;
     gap: 8px; 
   }
   
-  .translation-box {
+  .vocab-box {
     display: flex;
     justify-content: space-between; /* Spanish word on left, English word on right */
     align-items: center;
-    padding: 4px;
+    padding: 6px;
     padding-inline: 15px;
-    border: 1px solid #d3e4fb;
+    border: none;
     border-radius: 20px;
-    background-color: #e7f1ff;
+    background-color: var(--pastel-blue);
   }
   
   .english-word {
     font-style: italic;
-    color: #909090;
+    color: var(--grey-text);
   }
   
   .spotify-embed {
@@ -106,64 +120,6 @@ margin: 0 0 16px;
     align-items: center;
     flex-direction: column;
   }  
-
-  .reflection-textarea {
-    display: flex;
-    box-sizing: border-box;
-    align-items: center;
-    font-family: 'Inter', 'Roboto', 'Open Sans', sans-serif;
-    width: 100%;
-    height: 100%;
-    border: 1px solid #fdefd1;
-    background: #fdf7ea;
-    border-radius: 10px;
-    padding: 20px;
-    font-size: 1rem;
-    resize: none;
-  }
-  
-  .reflection-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-width: 100%;  
-    margin: 0 auto;   
-    margin-top: 6px;
-    
-  }
-  
-  .word-count {
-    font-size: 0.9rem;
-    color: #666;
-    margin: 0;      
-  }
-  
-  .reflection-buttons {
-    display: flex;
-    gap: 8px;
-  }
-  
-  .reflection-btn {
-    padding-top: 5px;
-    padding-bottom: 1px;
-    padding-left: 6px;
-    padding-right: 5px;
-    border: none;
-    border-radius: 20px;
-    background-color: #3A8FB7;
-    color: #fff;
-    font-size: 0.9rem;
-    cursor: pointer;
-  }
-  
-  .reflection-btn.correction {
-    background-color: #67cf6b;
-  }
-  
-  .reflection-btn.historial {
-    background-color: #bebebe;
-  }
   
   /* Specific grid area assignments and colors */
   .card1 {
@@ -210,5 +166,23 @@ margin: 0 0 16px;
     grid-area: card6;
   }
 
-  
+  /* Colour palette */
+  .bento-yellow {
+    background-color: #fff5b1; /* Light yellow */
+  }
+  .bento-purple {
+    background-color: #dcd0ff; /* Light lavender */
+  }
+  .bento-blue {
+    background-color: #b3e5fc; /* Light blue */
+  }
+  .bento-pink {
+    background-color: #ffc1e3; /* Light pink */
+  }
+  .bento-peach {
+    background-color: #ffdcb0; /* Peach */
+  }
+  .bento-lilac {
+    background-color: #e8d3ff; /* Another light purple */
+  }
   
