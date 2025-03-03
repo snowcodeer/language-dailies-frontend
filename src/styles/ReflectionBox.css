@@ -1,0 +1,89 @@
+@import '../styles/colours.css';
+
+.card-top {
+    flex: 2;  /* Takes twice the space compared to the bottom */
+    padding: 12px 36px;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.reflection-textarea {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    font-family: 'Inter', 'Roboto', 'Open Sans', sans-serif;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: var(--pastel-yellow);
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 1rem;
+    resize: none;
+}
+
+.reflection-textarea:focus {
+    outline: none !important;
+    border: 1px solid var(--accent-yellow);
+}
+  
+.reflection-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;  
+    margin: 0 auto;   
+    margin-top: 6px;
+}
+  
+.word-count {
+    font-size: 0.9rem;
+    color: var(--grey-text);
+    margin: 0;      
+}
+
+.word-count.green {
+    color: #67cf6b; /* Same color as the correction button */
+}
+  
+.reflection-buttons {
+    display: flex;
+    gap: 8px;
+}
+  
+.reflection-btn {
+    padding-top: 5px;
+    padding-bottom: 1px;
+    padding-left: 6px;
+    padding-right: 5px;
+    border: none;
+    border-radius: 20px;
+    background-color: #3A8FB7;
+    color: #fff;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+  
+.reflection-btn.correction {
+    background-color: #67cf6b;
+}
+  
+.reflection-btn.historial {
+    background-color: #bebebe;
+}
+
+.accent-btn {
+    padding-top: 2px;
+    width: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--pastel-yellow);
+    color: var(--grey-text);
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin: 2px;
+}

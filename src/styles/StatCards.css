@@ -10,28 +10,11 @@ body {
     color: #333333;            /* Neutral text color */
   }
   
-.card1 {
+.stat-card {
     padding: 16px;
     background-color: #ffffff;
     /* Any additional styling for card1 */
   }
-  
-.card1-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Two columns: left and right */
-    gap: 16px;
-}
-
-.card1-left {
-    display: flex;
-}
-
-.card1-right {
-/* Right column will house the vertical stat boxes */
-display: flex;
-align-items: center;
-justify-content: center;
-}
 
 .stats-container {
 display: flex;
