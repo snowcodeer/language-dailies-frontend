@@ -1,7 +1,6 @@
 import React from 'react';
 import { FaBook } from 'react-icons/fa';
 import '../styles/VocabBox.css';
-import StickerSelect from './StickerSelect';
 
 const VocabBox = () => {
   return (
