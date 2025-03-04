@@ -1,38 +1,25 @@
-:root {
-  --primary-bg: #F8F9FA;
-  --card-bg: #FFFFFF;
-  --accent-green: #24A148;
-  --accent-blue: #3A8FB7;
-  --accent-yellow: #faae3c;
-  --accent-purple: #000;
-  --pastel-green: #effef0;
-  --pastel-blue: #e7f1ff;
-  --pastel-yellow: #fdf7ea;
-  --pastel-purple: #f6f2fd;
-  --neutral-text: #333333;
-  --grey-text: #909090;
-}
-
 html {
     font-size: 16px; /* Sets the base font size for the whole document */
+    height: 100%; /* Ensure html takes full height */
   }
 
 body {
     margin: 0;
     font-family: 'Inter', 'Roboto', 'Open Sans', sans-serif;
     background-color: #f1f6fb; /* Primary background */
-    color: var(--neutral-text);            /* Neutral text color */
+    color: #333333;            /* Neutral text color */
+    height: 100%; /* Ensure body takes full height */
   }
   
 
 h1 {
-    color: var(--neutral-text);        
+    color: #333333;        
     font-size: 1.4em;
     margin-bottom: 20px; 
   }
 
 h2 {
-    color: var(--neutral-text);        
+    color: #333333;        
     font-size: 1.2rem;
     text-align: left;
     display: flex;
@@ -49,70 +36,115 @@ margin: 0 0 16px;
 } 
 
 .bento-container {
-    height: 94vh;
-    min-height: 80vh; /* 80% of viewport height */
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    gap: 25px;
-    padding: 20px;
+  overflow: auto; /* Ensure overscroll functionality */
+  height: 100vh; /* Ensure it takes the full viewport height */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 200px 300px 200px;
+  gap: 25px;
+  padding: 20px;
+  margin-bottom: 20px; /* Add margin to the bottom */
+  grid-template-areas:
+    "card1 card1 card2"
+    "card3 card4 card6"
+    "card7 card5 card6";
+}
+
+/* Add media query for smaller screens */
+@media (max-width: 768px) {
+  .bento-container {
+    overflow: auto; /* Ensure overscroll functionality */
+    grid-template-columns: 1fr; /* Single column layout */
+    grid-template-rows: auto; /* Adjust rows automatically */
+    gap: 15px; /* Reduce gap between items */
+    padding: 10px; /* Reduce padding */
+    padding-bottom: 40px; /* Add padding to the bottom */
+    margin-bottom: 20px; /* Add margin to the bottom */
     grid-template-areas:
-      "card1 card1 card2"
-      "card3 card4 card6"
-      "card3 card5 card6";
+      "card1"
+      "card2"
+      "card6"
+      "card3"
+      "card4"
+      "card5"
+      "card7";
   }
-  
+
   .bento-item {
-    background: var(--card-bg);
+    padding: 10px 20px; /* Adjust padding for smaller screens */
+  }
+
+  .card2, .card3, .card4, .card5, .card6, .card7 {
+    min-width: auto; /* Remove minimum width constraint */
+  }
+  .card3{
+    height: 250px;
+  }
+}
+
+/* Add media query for two-column layout */
+@media (min-width: 769px) and (max-width: 1400px) {
+  .bento-container {
+    overflow: auto; /* Ensure overscroll functionality */
+    grid-template-columns: 1fr 1fr; /* Two column layout */
+    grid-template-rows: auto; /* Adjust rows automatically */
+    gap: 20px; /* Adjust gap between items */
+    padding: 15px; /* Adjust padding */
+    padding-bottom: 40px; /* Add padding to the bottom */
+    margin-bottom: 20px; /* Add margin to the bottom */
+    grid-template-areas:
+      "card1 card1"
+      "card2 card6"
+      "card3 card4"
+      "card5 card7";
+  }
+
+  .bento-item {
+    padding: 12px 28px; /* Adjust padding for medium screens */
+  }
+
+  .card2, .card3, .card4, .card5, .card6, .card7 {
+    min-width: auto; /* Remove minimum width constraint */
+  }
+
+  .card3{
+    height: 250px;
+  }
+}
+
+/* Add media query for fullscreen */
+@media (min-width: 1401px) {
+  .bento-container {
+    height: 100vh; /* Ensure it takes the full viewport height */
+      }
+}
+
+  .bento-item {
+    background: #ffffff;
     border-radius: 10px;
     padding: 15px 36px;
-    padding-bottom: 40px;
+    padding-bottom: 30px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
+    min-height: 150px; /* Set a minimum height for the bento box cards */
+    overflow: auto; /* Enable scroll when overflowing */
   }
 
   .inner-box {
     box-sizing: border-box;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: flex-start;
     width: 100%;
-    height: 100%;
-    background-color: var(--pastel-purple);
+    height: 100%; 
     border: none;
     border-radius: 10px;
     margin-top: 0px;
-    padding: 10px 30px;
-    overflow-y: auto; /* Enables vertical scrolling if content overflows */
+    padding: 12px 24px;
+    overflow: auto; 
   }
 
-  .conjugation-box {
-    background-color: var(--pastel-green); 
-    border: none;
-  }
-
-  .vocab-boxes {
-    display: flex;
-    flex-direction: column;
-    gap: 8px; 
-  }
-  
-  .vocab-box {
-    display: flex;
-    justify-content: space-between; /* Spanish word on left, English word on right */
-    align-items: center;
-    padding: 6px;
-    padding-inline: 15px;
-    border: none;
-    border-radius: 20px;
-    background-color: var(--pastel-blue);
-  }
-  
-  .english-word {
-    font-style: italic;
-    color: var(--grey-text);
-  }
-  
   .spotify-embed {
     display: flex;
     width: 100%;
@@ -120,42 +152,32 @@ margin: 0 0 16px;
     align-items: center;
     flex-direction: column;
   }  
-  
+ 
   /* Specific grid area assignments and colors */
   .card1 {
     grid-area: card1;
+    min-width: 350px;
   }
-  
+
   .card2 {
     grid-area: card2;
+    min-width: 350px;
   }
 
   .card3 {
     grid-area: card3;
-    display: flex;
-    gap: 25px;
-    flex-direction: column;
-    height: 100%; 
-  }
-  .card-top {
-    flex: 2;  /* Takes twice the space compared to the bottom */
+    min-width: 350px;
     padding: 12px 36px;
     border-radius: 10px;
     background: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-  }
-  .card-bottom {
-    flex: 1;
-    padding: 12px 36px;
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   .card4 {
     grid-area: card4;
+    min-width: 300px;
   }
 
   .card5 {
@@ -166,23 +188,38 @@ margin: 0 0 16px;
     grid-area: card6;
   }
 
-  /* Colour palette */
-  .bento-yellow {
-    background-color: #fff5b1; /* Light yellow */
+  .card7 {
+    grid-area: card7;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 12px 36px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding-bottom: 30px;
   }
-  .bento-purple {
-    background-color: #dcd0ff; /* Light lavender */
-  }
-  .bento-blue {
-    background-color: #b3e5fc; /* Light blue */
-  }
-  .bento-pink {
-    background-color: #ffc1e3; /* Light pink */
-  }
-  .bento-peach {
-    background-color: #ffdcb0; /* Peach */
-  }
-  .bento-lilac {
-    background-color: #e8d3ff; /* Another light purple */
-  }
-  
+
+.pastel-green {
+    background-color: #effef0;
+}
+
+.pastel-blue {
+    background-color: #e7f1ff;
+}
+
+.pastel-yellow {
+    background-color: #fdf7ea;
+}
+
+.pastel-purple {
+    background-color: #faf2fd;
+}
+
+.pastel-red {
+  background-color: #fdf2f2;
+}
+
+.pastel-indigo {
+  background-color: #f2f3fd;
+}

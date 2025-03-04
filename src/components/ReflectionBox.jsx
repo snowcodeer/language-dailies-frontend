@@ -31,7 +31,7 @@ const ReflectionBox = () => {
   const wordCount = reflection.trim().split(/\s+/).filter(Boolean).length;
 
   return (
-    <div className="reflection-box">
+    <>
       <h2 className="reflection-heading">
         <span className="heading-text">Reflexión diaria</span>
         <FaLightbulb style={{ color: '#faae3c' }} />
@@ -68,9 +68,8 @@ const ReflectionBox = () => {
             <FaCheck />
           </button>
         </div>
-        
       </div>
-    </div>
+    </>
   );
 };
 

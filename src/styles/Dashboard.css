@@ -1,0 +1,61 @@
+.dashboard-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-container {
+    flex: 1;
+    margin-right: 20px;
+    /* Add any additional styles for the left container */
+}
+
+.right-container {
+    flex: 1;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.stat-card {
+    background-color: #fdf7ea; /* var(--pastel-yellow) */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    flex: 1;
+}
+
+.words-learned .stat-number,
+.hours-practiced .stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.words-learned .stat-label,
+.hours-practiced .stat-label {
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.streak {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.streak-icon {
+    font-size: 2rem;
+    color: #faae3c; /* var(--accent-yellow) */
+}
+
+.streak-number {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 10px;
+}

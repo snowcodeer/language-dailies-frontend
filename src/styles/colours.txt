@@ -1,0 +1,26 @@
+background: #2c3e50
+  height: 100%
+  width: 100%
+  overflow-x: hidden
+  overflow-y: auto
+  -webkit-overflow-scrolling: touch
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  justify-content: space-around
+  align-items: center
+  align-content: flex-start
+  box-sizing: border-box 
+
+
+the accent colours are random 
+:root {
+  --primary-bg: #F8F9FA;
+  --card-bg: #ffffff;
+  --accent-green: #24A148;
+  --accent-blue: #3A8FB7;
+  --accent-yellow: #faae3c;
+  --accent-purple: #000;
+  --neutral-text: #333333;
+  --grey-text: #909090;
+}
