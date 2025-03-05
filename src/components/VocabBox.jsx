@@ -6,6 +6,7 @@ const VocabBox = () => {
   const [clicked, setClicked] = useState(Array(4).fill(false));
   const [hidden, setHidden] = useState(Array(4).fill(false));
   const [showUndo, setShowUndo] = useState(false);
+  const [undoCounter, setUndoCounter] = useState(0);
 
   const handleClick = (index) => {
     const newClicked = [...clicked];
@@ -24,6 +25,8 @@ const VocabBox = () => {
     setClicked(Array(4).fill(false));
     setHidden(Array(4).fill(false));
     setShowUndo(false);
+    setUndoCounter(undoCounter + 1);
+    console.log(`Undo Counter: ${undoCounter + 1}`);
   };
 
   useEffect(() => {
