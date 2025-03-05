@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaBook, FaUndo } from 'react-icons/fa';
+import { FaBook, FaUndo, FaCheck } from 'react-icons/fa';
 import '../styles/VocabBox.css';
 
 const VocabBox = () => {
@@ -10,6 +10,8 @@ const VocabBox = () => {
   const [answer, setAnswer] = useState(false);
   const [inputs, setInputs] = useState(Array(4).fill(''));
   const [randomDisplay, setRandomDisplay] = useState(Array(4).fill(false));
+  const [allFilled, setAllFilled] = useState(false);
+  const [check, setCheck] = useState(false);
 
   const handleClick = (index) => {
     if (answer) return; // Prevent clicking in answer state
@@ -34,7 +36,17 @@ const VocabBox = () => {
     setAnswer(false);
     setInputs(Array(4).fill(''));
     setRandomDisplay(Array(4).fill(false));
+    setAllFilled(false);
+    setCheck(false);
     console.log(`Undo Counter: ${undoCounter + 1}`);
+  };
+
+  const handleCheck = () => {
+    setCheck(true);
+    setTimeout(() => {
+      setCheck(false);
+      setShowUndo(false);
+    }, 1500); // Reset after 1.5s
   };
 
   const handleInputChange = (index, value) => {
@@ -54,11 +66,23 @@ const VocabBox = () => {
     }
   }, [clicked]);
 
+  useEffect(() => {
+    if (inputs.every(input => input.trim() !== '')) {
+      setAllFilled(true);
+    } else {
+      setAllFilled(false);
+    }
+  }, [inputs]);
+
   return (
     <>
       <h2>
         <span className="heading-text">Vocabulario de hoy</span>
-        {showUndo || answer ? (
+        {check ? (
+          <FaUndo style={{ color: '#219fed', cursor: 'pointer' }} onClick={handleUndo} />
+        ) : allFilled ? (
+          <FaCheck style={{ color: '#219fed', cursor: 'pointer' }} onClick={handleCheck} />
+        ) : showUndo || answer ? (
           <FaUndo style={{ color: '#219fed', cursor: 'pointer' }} onClick={handleUndo} />
         ) : (
           <FaBook style={{ color: '#219fed' }} />
@@ -66,32 +90,34 @@ const VocabBox = () => {
       </h2>
       <div className="vocab-grid">
         {['Hola', 'Adiós', 'Gracias', 'Por favor'].map((word, index) => (
-          <button
+          <div
             key={index}
-            className={`vocab-box ${clicked[index] ? 'faded' : ''} ${answer ? 'answer' : ''}`}
+            className={`vocab-box ${clicked[index] ? 'faded' : ''} ${answer ? 'answer' : ''} ${check ? 'pastel-green' : ''}`}
             onClick={() => handleClick(index)}
-            style={{ outline: 'none' }}
+            style={{ outline: 'none', cursor: answer ? 'default' : 'pointer' }}
           >
             {answer ? (
               randomDisplay[index] ? (
                 <>
-                  <span className="spanish-word visible">{word}</span>
+                  <span className="spanish-word visible fade-in">{word}</span>
                   <input
                     type="text"
                     value={inputs[index]}
                     onChange={(e) => handleInputChange(index, e.target.value)}
-                    className="text-entry"
+                    className="text-entry fade-in"
+                    style={{ marginLeft: 'auto', textAlign: 'right' }}
                   />
                 </>
               ) : (
                 <>
-                  <span className="english-word visible"><em>{['Hello', 'Goodbye', 'Thank you', 'Please'][index]}</em></span>
                   <input
                     type="text"
                     value={inputs[index]}
                     onChange={(e) => handleInputChange(index, e.target.value)}
-                    className="text-entry"
+                    className="text-entry fade-in"
+                    style={{ marginRight: 'auto' }}
                   />
+                  <span className="english-word visible fade-in"><em>{['Hello', 'Goodbye', 'Thank you', 'Please'][index]}</em></span>
                 </>
               )
             ) : (
@@ -100,7 +126,7 @@ const VocabBox = () => {
                 <span className={`english-word ${hidden[index] ? 'hidden' : ''}`}><em>{['Hello', 'Goodbye', 'Thank you', 'Please'][index]}</em></span>
               </>
             )}
-          </button>
+          </div>
         ))}
       </div>
     </>

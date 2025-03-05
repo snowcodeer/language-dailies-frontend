@@ -92,3 +92,26 @@
     grid-template-columns: 1fr; /* Single column layout */
   }
 }
+
+.fade-in {
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.pastel-green {
+  background: #effef0;
+  transition: background 0.8s ease;
+}
+
+.check {
+  background: #effef0;
+  transition: background 0.8s ease;
+}
