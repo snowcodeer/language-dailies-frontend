@@ -9,13 +9,13 @@
 .vocab-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
+  gap: 20px;
 }
 
 .vocab-box {
   background: #f1f6fb;
   border-radius: 10px;
-  padding: 8px;
+  padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between; /* Spanish word on left, English word on right */
@@ -26,4 +26,11 @@
 .english-word {
   font-style: italic;
   color: #909090;
+}
+
+/* Add media query for mobile versions */
+@media (max-width: 1400px) {
+  .vocab-grid {
+    grid-template-columns: 1fr; /* Single column layout */
+  }
 }

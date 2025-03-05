@@ -9,6 +9,7 @@ body {
     background-color: #f1f6fb; /* Primary background */
     color: #333333;            /* Neutral text color */
     height: 100%; /* Ensure body takes full height */
+    overflow: hidden;
   }
   
 
@@ -16,6 +17,9 @@ h1 {
     color: #333333;        
     font-size: 1.4em;
     margin-bottom: 20px; 
+    justify-content: space-between;
+    text-align: left;
+    display: flex
   }
 
 h2 {
@@ -45,13 +49,13 @@ margin: 0 0 16px;
   padding: 20px;
   margin-bottom: 20px; /* Add margin to the bottom */
   grid-template-areas:
-    "card1 card1 card2"
+    "card1 card2 card2"
     "card3 card4 card6"
     "card7 card5 card6";
 }
 
 /* Add media query for smaller screens */
-@media (max-width: 768px) {
+@media (max-width: 850px) {
   .bento-container {
     overflow: auto; /* Ensure overscroll functionality */
     grid-template-columns: 1fr; /* Single column layout */
@@ -77,13 +81,22 @@ margin: 0 0 16px;
   .card2, .card3, .card4, .card5, .card6, .card7 {
     min-width: auto; /* Remove minimum width constraint */
   }
+  .card2 {
+    height: 245px;
+  }
   .card3{
     height: 250px;
+  }
+  .card4{
+    height: 340px;
+  }
+  .card6{
+    height: 340px;
   }
 }
 
 /* Add media query for two-column layout */
-@media (min-width: 769px) and (max-width: 1400px) {
+@media (min-width: 850px) and (max-width: 1400px) {
   .bento-container {
     overflow: auto; /* Ensure overscroll functionality */
     grid-template-columns: 1fr 1fr; /* Two column layout */
@@ -107,13 +120,17 @@ margin: 0 0 16px;
     min-width: auto; /* Remove minimum width constraint */
   }
 
+  .card2 {
+    height: 245px;
+  }
+
   .card3{
     height: 250px;
   }
 }
 
 /* Add media query for fullscreen */
-@media (min-width: 1401px) {
+@media (min-width: 1400px) {
   .bento-container {
     height: 100vh; /* Ensure it takes the full viewport height */
       }
@@ -156,17 +173,14 @@ margin: 0 0 16px;
   /* Specific grid area assignments and colors */
   .card1 {
     grid-area: card1;
-    min-width: 350px;
   }
 
   .card2 {
     grid-area: card2;
-    min-width: 350px;
   }
 
   .card3 {
     grid-area: card3;
-    min-width: 350px;
     padding: 12px 36px;
     border-radius: 10px;
     background: #ffffff;
@@ -177,7 +191,6 @@ margin: 0 0 16px;
 
   .card4 {
     grid-area: card4;
-    min-width: 300px;
   }
 
   .card5 {
@@ -222,4 +235,20 @@ margin: 0 0 16px;
 
 .pastel-indigo {
   background-color: #f2f3fd;
+}
+
+.grey-text {
+    color: #707070;
+}
+
+.accent-yellow {
+    color: #faae3c;
+}
+
+.accent-red {
+    color: #ff4d4d;
+}
+
+.accent-green {
+    color: #67cf6b;
 }

@@ -31,7 +31,6 @@
   
 .word-count {
     font-size: 0.9rem;
-    color: #909090; /* var(--grey-text) */
     margin: 0;      
 }
 
@@ -71,8 +70,14 @@
     border: none;
     border-radius: 5px;
     background-color: #fdf7ea; /* var(--pastel-yellow) */
-    color: #909090; /* var(--grey-text) */
     font-size: 0.9rem;
     cursor: pointer;
     margin: 2px;
+}
+
+/* Add media query for mobile versions */
+@media (max-width: 850px) {
+    .accent-btn {
+        display: none; /* Hide accent buttons in mobile versions */
+    }
 }

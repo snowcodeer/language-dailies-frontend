@@ -46,13 +46,13 @@ const ReflectionBox = () => {
       ></textarea>
 
       <div className="reflection-controls">
-        <p className={`word-count ${wordCount >= 60 ? 'green' : ''}`}>Palabras: {wordCount}</p>
+        <p className={`word-count grey-text ${wordCount >= 60 ? 'green' : ''}`}>Palabras: {wordCount}</p>
         
         <div className="accent-buttons">
           {['á', 'é', 'í', 'ó', 'ú', 'ñ', 'ü'].map((accent) => (
             <button
               key={accent}
-              className="accent-btn"
+              className="accent-btn grey-text"
               onClick={() => insertAccent(accent)}
             >
               {accent}
