@@ -1,20 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { FaBook } from 'react-icons/fa';
+import { FaBook, FaUndo } from 'react-icons/fa';
 import '../styles/VocabBox.css';
 
 const VocabBox = () => {
   const [clicked, setClicked] = useState(Array(4).fill(false));
+  const [hidden, setHidden] = useState(Array(4).fill(false));
+  const [showUndo, setShowUndo] = useState(false);
 
   const handleClick = (index) => {
     const newClicked = [...clicked];
     newClicked[index] = true;
     setClicked(newClicked);
+    setShowUndo(true);
+
+    setTimeout(() => {
+      const newHidden = [...hidden];
+      newHidden[index] = true;
+      setHidden(newHidden);
+    }, 800); // Set visibility to hidden after 0.8s
+  };
+
+  const handleUndo = () => {
+    setClicked(Array(4).fill(false));
+    setHidden(Array(4).fill(false));
+    setShowUndo(false);
   };
 
   useEffect(() => {
     if (clicked.every(Boolean)) {
       setTimeout(() => {
         setClicked(Array(4).fill(false));
+        setHidden(Array(4).fill(false));
+        setShowUndo(false);
       }, 1500);
     }
   }, [clicked]);
@@ -23,7 +40,11 @@ const VocabBox = () => {
     <>
       <h2>
         <span className="heading-text">Vocabulario de hoy</span>
-        <FaBook style={{ color: '#219fed' }}/>
+        {showUndo ? (
+          <FaUndo style={{ color: '#219fed', cursor: 'pointer' }} onClick={handleUndo} />
+        ) : (
+          <FaBook style={{ color: '#219fed' }} />
+        )}
       </h2>
       <div className="vocab-grid">
         {['Hola', 'Adiós', 'Gracias', 'Por favor'].map((word, index) => (
@@ -33,8 +54,8 @@ const VocabBox = () => {
             onClick={() => handleClick(index)}
             style={{ outline: 'none' }}
           >
-            <span className={`spanish-word ${clicked[index] ? 'hidden' : ''}`}>{word}</span>
-            <span className={`english-word ${clicked[index] ? 'hidden' : ''}`}><em>{['Hello', 'Goodbye', 'Thank you', 'Please'][index]}</em></span>
+            <span className={`spanish-word ${hidden[index] ? 'hidden' : ''}`}>{word}</span>
+            <span className={`english-word ${hidden[index] ? 'hidden' : ''}`}><em>{['Hello', 'Goodbye', 'Thank you', 'Please'][index]}</em></span>
           </button>
         ))}
       </div>
