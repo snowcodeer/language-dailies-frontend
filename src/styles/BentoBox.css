@@ -64,6 +64,7 @@ margin: 0 0 16px;
     padding: 10px; /* Reduce padding */
     padding-bottom: 40px; /* Add padding to the bottom */
     margin-bottom: 20px; /* Add margin to the bottom */
+    height: 94vh;
     grid-template-areas:
       "card1"
       "card2"
@@ -81,8 +82,11 @@ margin: 0 0 16px;
   .card2, .card3, .card4, .card5, .card6, .card7 {
     min-width: auto; /* Remove minimum width constraint */
   }
+  .card1 {
+    height: 155px;
+  }
   .card2 {
-    height: 245px;
+    height: 280px;
   }
   .card3{
     height: 250px;
@@ -105,10 +109,11 @@ margin: 0 0 16px;
     padding: 15px; /* Adjust padding */
     padding-bottom: 40px; /* Add padding to the bottom */
     margin-bottom: 20px; /* Add margin to the bottom */
+    height: 94vh;
     grid-template-areas:
       "card1 card1"
-      "card2 card6"
-      "card3 card4"
+      "card2 card3"
+      "card6 card4"
       "card5 card7";
   }
 
@@ -116,16 +121,20 @@ margin: 0 0 16px;
     padding: 12px 28px; /* Adjust padding for medium screens */
   }
 
+  .card1 {
+    height: 155px;
+  }
+  
   .card2, .card3, .card4, .card5, .card6, .card7 {
     min-width: auto; /* Remove minimum width constraint */
   }
 
   .card2 {
-    height: 245px;
+    height: 280px;
   }
 
-  .card3{
-    height: 250px;
+  .card6{
+    height: 300px;
   }
 }
 
