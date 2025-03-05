@@ -12,6 +12,10 @@
   gap: 20px;
 }
 
+.vocab-box-wrapper {
+  position: relative;
+}
+
 .vocab-box {
   background: #f1f6fb;
   border-radius: 10px;
@@ -21,6 +25,21 @@
   justify-content: space-between; /* Spanish word on left, English word on right */
   align-items: center;
   flex-grow: 1; /* Allow vocab boxes to grow and fill the container */
+  border: none;
+  cursor: pointer;
+  transition: background 1s ease, color 1s ease, opacity 1s ease;
+  outline: none; 
+}
+
+.vocab-box.faded {
+  background: #fafafa;
+  color: transparent;
+  pointer-events: none;
+}
+
+.vocab-box.faded .spanish-word, 
+.vocab-box.faded .english-word {
+  visibility: hidden;
 }
 
 .english-word {
