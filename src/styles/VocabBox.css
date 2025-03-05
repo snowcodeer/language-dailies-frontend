@@ -46,8 +46,18 @@
   transition: color 0.8s ease;
 }
 
+.vocab-box.answer {
+  background: #f8f8f8;
+  color: #333; /* Ensure the color is set correctly */
+}
+
 .hidden {
   visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+  color: #333; /* Ensure the color is set correctly */
 }
 
 .english-word {
