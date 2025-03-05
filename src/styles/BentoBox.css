@@ -95,9 +95,20 @@ margin: 0 0 16px;
   .card4{
     height: 340px;
   }
-  .card6{
-    height: 340px;
+  .card5{
+    height: 180px;
   }
+  .card6{
+    height: 400px;
+  }
+  .card6 .inner-box{
+    height: 100%;
+  }
+  .card7{
+    height: 180px;
+  }
+
+
 }
 
 /* Add media query for two-column layout */
@@ -108,14 +119,15 @@ margin: 0 0 16px;
     grid-template-rows: auto; /* Adjust rows automatically */
     gap: 20px; /* Adjust gap between items */
     padding: 15px; /* Adjust padding */
-    padding-bottom: 40px; /* Add padding to the bottom */
-    margin-bottom: 20px; /* Add margin to the bottom */
-    height: 94vh;
+    padding-bottom: 30px; /* Add padding to the bottom */
+    margin-bottom: 50px; /* Add margin to the bottom */
+    height: 90vh;
     grid-template-areas:
       "card1 card1"
       "card2 card3"
-      "card6 card4"
-      "card5 card7";
+      "card5 card7"
+      "card5 card4"
+      "card6 card4";
   }
 
   .bento-item {
@@ -130,10 +142,14 @@ margin: 0 0 16px;
     height: 280px;
   }
 
-
   .card6{
-    height: 300px;
+    height: fit-content; /*avoid scrolling on bento boxes*/
   }
+
+  .card6 .inner-box{
+    height:fit-content; /*makes the inside box wrap the text nicely*/
+  }
+
 }
 
 /* Add media query for fullscreen */

@@ -8,8 +8,12 @@ const VocabBox = () => {
   const [showUndo, setShowUndo] = useState(false);
   const [undoCounter, setUndoCounter] = useState(0);
   const [answer, setAnswer] = useState(false);
+  const [inputs, setInputs] = useState(Array(4).fill(''));
+  const [randomDisplay, setRandomDisplay] = useState(Array(4).fill(false));
 
   const handleClick = (index) => {
+    if (answer) return; // Prevent clicking in answer state
+
     const newClicked = [...clicked];
     newClicked[index] = true;
     setClicked(newClicked);
@@ -28,7 +32,15 @@ const VocabBox = () => {
     setShowUndo(false);
     setUndoCounter(undoCounter + 1);
     setAnswer(false);
+    setInputs(Array(4).fill(''));
+    setRandomDisplay(Array(4).fill(false));
     console.log(`Undo Counter: ${undoCounter + 1}`);
+  };
+
+  const handleInputChange = (index, value) => {
+    const newInputs = [...inputs];
+    newInputs[index] = value;
+    setInputs(newInputs);
   };
 
   useEffect(() => {
@@ -37,6 +49,7 @@ const VocabBox = () => {
         setAnswer(true);
         setHidden(Array(4).fill(false)); // Ensure Spanish words are visible
         setClicked(Array(4).fill(false)); // Turn off faded state
+        setRandomDisplay(Array(4).fill().map(() => Math.random() >= 0.5)); // Randomize display
       }, 1500);
     }
   }, [clicked]);
@@ -59,8 +72,34 @@ const VocabBox = () => {
             onClick={() => handleClick(index)}
             style={{ outline: 'none' }}
           >
-            <span className={`spanish-word ${hidden[index] && !answer ? 'hidden' : ''} ${answer ? 'visible' : ''}`}>{word}</span>
-            <span className={`english-word ${hidden[index] || answer ? 'hidden' : ''}`}><em>{['Hello', 'Goodbye', 'Thank you', 'Please'][index]}</em></span>
+            {answer ? (
+              randomDisplay[index] ? (
+                <>
+                  <span className="spanish-word visible">{word}</span>
+                  <input
+                    type="text"
+                    value={inputs[index]}
+                    onChange={(e) => handleInputChange(index, e.target.value)}
+                    className="text-entry"
+                  />
+                </>
+              ) : (
+                <>
+                  <span className="english-word visible"><em>{['Hello', 'Goodbye', 'Thank you', 'Please'][index]}</em></span>
+                  <input
+                    type="text"
+                    value={inputs[index]}
+                    onChange={(e) => handleInputChange(index, e.target.value)}
+                    className="text-entry"
+                  />
+                </>
+              )
+            ) : (
+              <>
+                <span className={`spanish-word ${hidden[index] ? 'hidden' : ''}`}>{word}</span>
+                <span className={`english-word ${hidden[index] ? 'hidden' : ''}`}><em>{['Hello', 'Goodbye', 'Thank you', 'Please'][index]}</em></span>
+              </>
+            )}
           </button>
         ))}
       </div>

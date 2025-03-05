@@ -10,7 +10,6 @@ const ConjugationBox = () => {
             <FaPencilAlt style={{ color: '#2a962e' }}/>
             </h2>
             <div className="inner-box pastel-green">
-            <div className="inner-box pastel-red"></div>
             <p>1. El gato está durmiendo en el sofá.<br />
             2. A ella le encanta leer libros en su tiempo libre.<br />
             3. Viajaremos a España el próximo verano.<br />
