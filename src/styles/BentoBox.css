@@ -41,7 +41,7 @@ margin: 0 0 16px;
 
 .bento-container {
   overflow: auto; /* Ensure overscroll functionality */
-  height: 100vh; /* Ensure it takes the full viewport height */
+  height: 94vh; /* Ensure it takes the full viewport height */
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 200px 300px 200px;
@@ -64,7 +64,7 @@ margin: 0 0 16px;
     padding: 10px; /* Reduce padding */
     padding-bottom: 40px; /* Add padding to the bottom */
     margin-bottom: 20px; /* Add margin to the bottom */
-    height: 94vh;
+    height: 90vh;
     grid-template-areas:
       "card1"
       "card2"
