@@ -99,7 +99,7 @@ margin: 0 0 16px;
     height: 180px;
   }
   .card6{
-    height: 400px;
+    height: 500px;
   }
   .card6 .inner-box{
     height: 100%;
@@ -190,18 +190,9 @@ margin: 0 0 16px;
     height: 100%;
     text-align: left;
     margin: 0;
-    padding: 12px; /* Ensure content adjusts with the box */
+    padding: 10px 15px; /* Ensure content adjusts with the box */
     box-sizing: border-box;
-    line-height: 2.5;
   }
-
-  .spotify-embed {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }  
  
   /* Specific grid area assignments and colors */
   .card1 {

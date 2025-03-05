@@ -12,6 +12,11 @@ const VocabBox = () => {
   const [randomDisplay, setRandomDisplay] = useState(Array(4).fill(false));
   const [allFilled, setAllFilled] = useState(false);
   const [check, setCheck] = useState(false);
+  const [cooldown, setCooldown] = useState(false);
+  const [correct, setCorrect] = useState(Array(4).fill(false));
+
+  const spanishWords = ['Hola', 'Adiós', 'Gracias', 'Por favor'];
+  const englishWords = ['Hello', 'Goodbye', 'Thank you', 'Please'];
 
   const handleClick = (index) => {
     if (answer) return; // Prevent clicking in answer state
@@ -29,6 +34,11 @@ const VocabBox = () => {
   };
 
   const handleUndo = () => {
+    if (cooldown) return; // Prevent clicking during cooldown
+
+    setCooldown(true);
+    setTimeout(() => setCooldown(false), 2000); // Set cooldown for 2s
+
     setClicked(Array(4).fill(false));
     setHidden(Array(4).fill(false));
     setShowUndo(false);
@@ -38,10 +48,19 @@ const VocabBox = () => {
     setRandomDisplay(Array(4).fill(false));
     setAllFilled(false);
     setCheck(false);
+    setCorrect(Array(4).fill(false));
     console.log(`Undo Counter: ${undoCounter + 1}`);
   };
 
   const handleCheck = () => {
+    const newCorrect = inputs.map((input, index) => {
+      if (randomDisplay[index]) {
+        return input.trim().toLowerCase() === englishWords[index].toLowerCase();
+      } else {
+        return input.trim().toLowerCase() === spanishWords[index].toLowerCase();
+      }
+    });
+    setCorrect(newCorrect);
     setCheck(true);
     setTimeout(() => {
       setCheck(false);
@@ -83,16 +102,16 @@ const VocabBox = () => {
         ) : allFilled ? (
           <FaCheck style={{ color: '#219fed', cursor: 'pointer' }} onClick={handleCheck} />
         ) : showUndo || answer ? (
-          <FaUndo style={{ color: '#219fed', cursor: 'pointer' }} onClick={handleUndo} />
+          <FaUndo style={{ color: '#219fed', cursor: cooldown ? 'not-allowed' : 'pointer' }} onClick={handleUndo} />
         ) : (
           <FaBook style={{ color: '#219fed' }} />
         )}
       </h2>
       <div className="vocab-grid">
-        {['Hola', 'Adiós', 'Gracias', 'Por favor'].map((word, index) => (
+        {spanishWords.map((word, index) => (
           <div
             key={index}
-            className={`vocab-box ${clicked[index] ? 'faded' : ''} ${answer ? 'answer' : ''} ${check ? 'pastel-green' : ''}`}
+            className={`vocab-box ${clicked[index] ? 'faded' : ''} ${answer ? 'answer' : ''} ${check ? (correct[index] ? 'pastel-green' : 'pastel-red') : ''}`}
             onClick={() => handleClick(index)}
             style={{ outline: 'none', cursor: answer ? 'default' : 'pointer' }}
           >
@@ -117,13 +136,13 @@ const VocabBox = () => {
                     className="text-entry fade-in"
                     style={{ marginRight: 'auto' }}
                   />
-                  <span className="english-word visible fade-in"><em>{['Hello', 'Goodbye', 'Thank you', 'Please'][index]}</em></span>
+                  <span className="english-word visible fade-in"><em>{englishWords[index]}</em></span>
                 </>
               )
             ) : (
               <>
                 <span className={`spanish-word ${hidden[index] ? 'hidden' : ''}`}>{word}</span>
-                <span className={`english-word ${hidden[index] ? 'hidden' : ''}`}><em>{['Hello', 'Goodbye', 'Thank you', 'Please'][index]}</em></span>
+                <span className={`english-word ${hidden[index] ? 'hidden' : ''}`}><em>{englishWords[index]}</em></span>
               </>
             )}
           </div>

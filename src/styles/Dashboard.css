@@ -1,49 +1,62 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 
 .stats-container {
-    display: flex;
-    gap: 30px;
+  display: flex;
+  gap: 30px;
+  flex: 1;
+  padding: 3px;
+  flex-direction: row; /* Stack horizontally */
+  overflow: hidden; /* Ensure it fits within the parent container */
 }
 
 .stat-card {
-    border-radius: 10px;
-    padding: 12px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    height: 70px;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    flex: 1;
+  border-radius: 10px;
+  padding: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex: 1;
 }
 
 .words-learned .stat-number,
 .hours-practiced .stat-number {
-    font-size: 2rem;
-    font-weight: bold;
+  font-size: 2rem;
+  font-weight: bold;
 }
+
+.streak .stat-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
 
 .words-learned .stat-label,
 .hours-practiced .stat-label {
-    font-size: 0.9rem;
-    margin-top: 5px;
+  font-size: 0.9rem;
+  margin-top: 5px;
 }
 
 .streak {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
 }
 
 .streak-icon {
-    font-size: 4rem;
-    color: #faae3c; /* var(--accent-yellow) */
+  width: 2.3rem;
+  height: 3.2rem;
+  color: #faae3c; /* var(--accent-yellow) */
 }
 
-.streak-number {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-top: 10px;
+.streak .stat-label {
+  font-size: 0.9rem;
+  margin-top: 5px; /* Adjust to position below the icon */
 }

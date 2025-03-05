@@ -106,12 +106,17 @@
   }
 }
 
-.pastel-green {
+.vocab-box.faded.pastel-green {
   background: #effef0;
   transition: background 0.8s ease;
 }
 
-.check {
+.vocab-box.faded.pastel-red {
+  background: #fdf2f2;
+  transition: background 0.8s ease;
+}
+
+.vocab-box.faded.check {
   background: #effef0;
   transition: background 0.8s ease;
 }
