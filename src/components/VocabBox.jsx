@@ -20,6 +20,8 @@ const VocabBox = () => {
 
   const handleClick = (index) => {
     if (answer) return; // Prevent clicking in answer state
+    setCooldown(true);
+    setTimeout(() => {setCooldown(false);}, 3000); // Undo button cooldown
 
     const newClicked = [...clicked];
     newClicked[index] = true;
@@ -35,9 +37,6 @@ const VocabBox = () => {
 
   const handleUndo = () => {
     if (cooldown) return; // Prevent clicking during cooldown
-
-    setCooldown(true);
-    setTimeout(() => setCooldown(false), 2000); // Set cooldown for 2s
 
     setClicked(Array(4).fill(false));
     setHidden(Array(4).fill(false));
@@ -63,9 +62,10 @@ const VocabBox = () => {
     setCorrect(newCorrect);
     setCheck(true);
     setTimeout(() => {
+      handleUndo();
       setCheck(false);
-      setShowUndo(false);
-    }, 1500); // Reset after 1.5s
+    }, 6000); // Reset 
+    
   };
 
   const handleInputChange = (index, value) => {
@@ -98,11 +98,11 @@ const VocabBox = () => {
       <h2>
         <span className="heading-text">Vocabulario de hoy</span>
         {check ? (
-          <FaUndo style={{ color: '#219fed', cursor: 'pointer' }} onClick={handleUndo} />
+          <FaUndo style={{ color: '#219fed', cursor: cooldown ? 'not-allowed' : 'pointer' }} onClick={cooldown ? null : handleUndo} disabled={cooldown}/>
         ) : allFilled ? (
           <FaCheck style={{ color: '#219fed', cursor: 'pointer' }} onClick={handleCheck} />
-        ) : showUndo || answer ? (
-          <FaUndo style={{ color: '#219fed', cursor: cooldown ? 'not-allowed' : 'pointer' }} onClick={handleUndo} />
+        ) : answer ? (
+          <FaUndo style={{ color: '#219fed', cursor: cooldown ? 'not-allowed' : 'pointer' }} onClick={cooldown ? null : handleUndo} disabled={cooldown}/>
         ) : (
           <FaBook style={{ color: '#219fed' }} />
         )}
@@ -111,7 +111,7 @@ const VocabBox = () => {
         {spanishWords.map((word, index) => (
           <div
             key={index}
-            className={`vocab-box ${clicked[index] ? 'faded' : ''} ${answer ? 'answer' : ''} ${check ? (correct[index] ? 'pastel-green' : 'pastel-red') : ''}`}
+            className={`vocab-box ${clicked[index] ? 'faded' : ''} ${answer ? 'answer' : ''} ${check ? (correct[index] ? 'correct' : 'incorrect') : ''}`}
             onClick={() => handleClick(index)}
             style={{ outline: 'none', cursor: answer ? 'default' : 'pointer' }}
           >

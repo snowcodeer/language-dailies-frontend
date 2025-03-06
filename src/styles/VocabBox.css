@@ -106,17 +106,13 @@
   }
 }
 
-.vocab-box.faded.pastel-green {
-  background: #effef0;
+.vocab-box.answer.correct {
+  background: #d8ffda;
   transition: background 0.8s ease;
 }
 
-.vocab-box.faded.pastel-red {
-  background: #fdf2f2;
+.vocab-box.answer.incorrect {
+  background: #ffe7e7;
   transition: background 0.8s ease;
 }
 
-.vocab-box.faded.check {
-  background: #effef0;
-  transition: background 0.8s ease;
-}
