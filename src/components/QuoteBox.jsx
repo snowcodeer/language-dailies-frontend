@@ -13,7 +13,7 @@ const QuoteBox = () => {
         className="inner-box pastel-purple" 
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#909090' }}
       >
-        <p style={{ margin: '0', textAlign: 'center' }}><i>"Caminante, no hay camino, se hace caminho al andar."</i></p>
+        <p style={{ margin: '0', textAlign: 'center' }}><i>"Caminante, no hay camino."</i></p>
       </div>
     </>
   );
