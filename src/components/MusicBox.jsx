@@ -116,7 +116,7 @@ const MusicBox = () => {
       <div className="inner-box pastel-red" style={{ display: 'flex', alignItems: 'left', padding: '10px' }}>
         <div className="music-container">
           <button className="play-button" onClick={togglePlayPause}>
-            {isPlaying ? <FaPause size={32} color="#dd4a4a" /> : <FaPlay size={32} color="#dd4a4a" />}
+            {isPlaying ? <FaPause size={32} color="#dd4a4a" /> : <FaPlay size={30} color="#dd4a4a" />}
           </button>
           <div className="song-details">
             {/* The song title is now a link to the YouTube video */}

@@ -6,7 +6,6 @@ const VocabBox = () => {
   const [clicked, setClicked] = useState(Array(4).fill(false));
   const [hidden, setHidden] = useState(Array(4).fill(false));
   const [showUndo, setShowUndo] = useState(false);
-  const [undoCounter, setUndoCounter] = useState(0);
   const [answer, setAnswer] = useState(false);
   const [inputs, setInputs] = useState(Array(4).fill(''));
   const [randomDisplay, setRandomDisplay] = useState(Array(4).fill(false));
@@ -182,14 +181,12 @@ const VocabBox = () => {
     setClicked(Array(4).fill(false));
     setHidden(Array(4).fill(false));
     setShowUndo(false);
-    setUndoCounter(undoCounter + 1);
     setAnswer(false);
     setInputs(Array(4).fill(''));
     setRandomDisplay(Array(4).fill(false));
     setAllFilled(false);
     setCheck(false);
     setCorrect(Array(4).fill(false));
-    console.log(`Undo Counter: ${undoCounter + 1}`);
   };
 
   const handleCheck = () => {
@@ -224,7 +221,6 @@ const VocabBox = () => {
     setClicked(Array(4).fill(false));
     setHidden(Array(4).fill(false));
     setShowUndo(false);
-    setUndoCounter(0);
     setAnswer(false);
     setInputs(Array(4).fill(''));
     setRandomDisplay(Array(4).fill(false));

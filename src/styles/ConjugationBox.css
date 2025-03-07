@@ -4,6 +4,7 @@
   gap: 10px;
   margin-bottom: 0px;
   padding-left: 14px;
+  padding-top: 10px;
 }
 
 .tense-item {
@@ -33,6 +34,7 @@
   display: flex; /* Adjust the height as needed */
   flex-direction: column;
   overflow-y: auto;
+  
 }
 
 .input-field {
