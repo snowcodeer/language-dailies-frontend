@@ -1,8 +1,12 @@
+.inner-box {
+  overflow: hidden;
+}
+
 .tenses-box {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 
 .tense-item {
@@ -24,4 +28,10 @@
   border: 1px solid #88b584;
   border-radius: 5px;
   outline: none;
+}
+
+.paragraph-container {
+  display: flex; /* Adjust the height as needed */
+  flex-direction: column;
+  overflow-y: auto;
 }

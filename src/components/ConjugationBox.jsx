@@ -100,27 +100,29 @@ const ConjugationBox = () => {
             </div>
           ))}
         </div>
-        <p onDrop={handleDrop} onDragOver={handleDragOver}>
-          {narrativeDictionary.paragraphWithBlanks.split(' ').map((word, index) => {
-            // Check if the word includes the blank marker.
-            if (word.includes('______')) {
-              return (
-                <span 
-                  key={index} 
-                  data-index={index} 
-                  className="blank"
-                  onDrop={handleDrop}
-                  onDragOver={handleDragOver}
-                  style={{ color: 'white' }} // Make the blank marker white
-                >
-                  {droppedTenses[index] || '______'}
-                </span>
-              );
-            } else {
-              return <span key={index}>{word} </span>;
-            }
-          })}
-        </p>
+        <div className="paragraph-container">
+          <p onDrop={handleDrop} onDragOver={handleDragOver}>
+            {narrativeDictionary.paragraphWithBlanks.split(' ').map((word, index) => {
+              // Check if the word includes the blank marker.
+              if (word.includes('______')) {
+                return (
+                  <span 
+                    key={index} 
+                    data-index={index} 
+                    className="blank"
+                    onDrop={handleDrop}
+                    onDragOver={handleDragOver}
+                    style={{ color: 'white' }} // Make the blank marker white
+                  >
+                    {droppedTenses[index] || '______'}
+                  </span>
+                );
+              } else {
+                return <span key={index}>{word} </span>;
+              }
+            })}
+          </p>
+        </div>
       </div>
     </>
   );
