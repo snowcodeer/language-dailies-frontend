@@ -238,6 +238,50 @@ margin: 0 0 16px;
     padding-bottom: 30px;
   }
 
+
+.music-container {
+  display: flex;
+  width: 100%;
+  gap: 15px;
+  flex: 1;
+  flex-direction: row; /* Stack horizontally */
+  overflow: hidden; /* Ensure it fits within the parent container */
+  align-items: center;
+}
+
+.play-button-container {
+  margin: 10px;
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 22px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  aspect-ratio: 1 / 1; /* Ensure width is the same as height */
+}
+
+.play-button {
+  width: 0;
+  height: 0;
+  border-left: 22px solid #ff4d4d; /* Accent red color */
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+}
+
+.song-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.song-title {
+  font-weight: bold;
+}
+
+.artist-name {
+  /* Additional styling if needed */
+}
+
 .pastel-green {
     background-color: #effef0;
 }
