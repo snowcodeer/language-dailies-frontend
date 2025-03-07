@@ -123,7 +123,9 @@ const ConjugationBox = () => {
       }
     }
     setDroppedTenses(newDropped);
-    setShowInputFields(true);
+    if (Object.keys(newDropped).length === narrativeDictionary.tense.length) {
+      setShowInputFields(true);
+    }
   };
 
   const handleUndo = () => {
