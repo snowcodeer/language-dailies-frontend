@@ -100,7 +100,7 @@ const MusicBox = () => {
   return (
     <>
       <h2>
-        <span className="heading-text">Canción de hoy</span>
+        <span className="heading-text">Canción del día</span>
         <div className="like-icon-container">
           {showHeart ? (
             liked ? (

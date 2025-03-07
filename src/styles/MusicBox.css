@@ -10,7 +10,7 @@ align-items: center;
 
 .play-button {
 margin: 10px;
-border-radius: 12px;
+border-radius: 10px;
 border: none;
 background: #ffffff;
 padding: 18px;
@@ -63,8 +63,8 @@ z-index: 9999; /* Ensure it's on top of other elements */
 .heart-animation {
 position: absolute;
 /* Adjust these values so the hearts appear above the like button */
-bottom: 175px; /* Example value: adjust as needed */
-left: 430px;  /* Example value: adjust as needed */
+bottom: 24%; /* Example value: adjust as needed */
+left: 28%;  /* Example value: adjust as needed */
 animation: streamHearts 2s ease-out forwards;
 }
 
@@ -78,4 +78,12 @@ animation: streamHearts 2s ease-out forwards;
     opacity: 0;
     transform: translate(+50px, -150px) scale(1.5);
 }
+}
+
+/* Media query for mobile devices */
+@media (max-width: 800px) {
+  .heart-animation {
+    bottom: 35%; 
+    left: 80%; 
+  }
 }
