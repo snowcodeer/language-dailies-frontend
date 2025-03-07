@@ -57,7 +57,7 @@ const VocabBox = () => {
   // Verbs (30 words)
   "trascender": "to transcend",
   "subyugar": "to subjugate",
-  "desvelar": "to reveal or to lose sleep",
+  "desvelar": "to keep awake",
   "contemplar": "to contemplate",
   "desenredar": "to untangle",
   "desentrañar": "to unravel",
@@ -195,10 +195,12 @@ const VocabBox = () => {
   const handleCheck = () => {
     const newCorrect = inputs.map((input, index) => {
       const [spanishWord, englishWord] = selectedEntries[index];
+      const normalizedInput = input.trim().toLowerCase();
+      const normalizedEnglishWord = englishWord.toLowerCase();
       if (randomDisplay[index]) {
-        return input.trim().toLowerCase() === englishWord.toLowerCase();
+        return normalizedInput === normalizedEnglishWord || normalizedInput === normalizedEnglishWord.replace(/^to\s+/, '');
       } else {
-        return input.trim().toLowerCase() === spanishWord.toLowerCase();
+        return normalizedInput === spanishWord.toLowerCase();
       }
     });
     setCorrect(newCorrect);
