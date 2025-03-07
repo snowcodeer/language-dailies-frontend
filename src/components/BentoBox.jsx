@@ -5,7 +5,6 @@ import Dashboard from './Dashboard';
 import ReflectionBox from './ReflectionBox';
 import QuoteBox from './QuoteBox';
 import VocabBox from './VocabBox';
-import { FaMusic, FaBook, FaComments, FaPencilAlt, FaLightbulb, FaCheck, FaHistory } from 'react-icons/fa';
 import ConjugationBox from './ConjugationBox';
 import MusicBox from './MusicBox';
 import ConversationBox from './ConversationBox';
@@ -13,6 +12,7 @@ import ConversationBox from './ConversationBox';
 const BentoBox = () => {
   // State for the reflection text
   const [reflection, setReflection] = useState('');
+  const [isPlaying, setIsPlaying] = useState(false);
 
   // Update state as the user types
   const handleReflectionChange = (e) => {
@@ -21,6 +21,11 @@ const BentoBox = () => {
   
   // Calculate word count (splits by whitespace and filters out empty strings)
   const wordCount = reflection.trim().split(/\s+/).filter(Boolean).length;
+
+  // Toggle play/pause state
+  const togglePlayPause = () => {
+    setIsPlaying(!isPlaying);
+  };
 
   return (
     <div className="bento-container">
@@ -49,8 +54,14 @@ const BentoBox = () => {
       </div>
 
       <div className="bento-item card7">
-        <MusicBox />
+        <MusicBox isPlaying={isPlaying} togglePlayPause={togglePlayPause} />
       </div>
+
+      {window.innerWidth < 850 && (
+        <div className="bento-item padding">
+          {/* Empty padding card */}
+        </div>
+      )}
 
     </div>
   );

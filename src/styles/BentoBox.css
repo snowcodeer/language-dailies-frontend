@@ -66,7 +66,6 @@ margin: 0 0 16px;
     padding: 10px; /* Reduce padding */
     padding-bottom: 40px; /* Add padding to the bottom */
     margin-bottom: 20px; /* Add margin to the bottom */
-    height: 85vh;
     grid-template-areas:
       "card1"
       "card2"
@@ -74,7 +73,8 @@ margin: 0 0 16px;
       "card3"
       "card4"
       "card5"
-      "card7";
+      "card7"
+      "padding";
   }
 
   .bento-item {
@@ -109,6 +109,9 @@ margin: 0 0 16px;
   .card7{
     height: 160px;
   }
+  .padding {
+    height: 50px;
+  }
 
 
 }
@@ -123,12 +126,12 @@ margin: 0 0 16px;
     padding: 15px; /* Adjust padding */
     padding-bottom: 30px; /* Add padding to the bottom */
     margin-bottom: 50px; /* Add margin to the bottom */
-    height: 90vh;
     grid-template-areas:
       "card1 card1"
       "card2 card3"
       "card5 card7"
-      "card6 card4";
+      "card6 card4"
+      "padding" "padding";
   }
 
   .bento-item {
@@ -149,6 +152,9 @@ margin: 0 0 16px;
 
   .card6 .inner-box{
     height:fit-content; /*makes the inside box wrap the text nicely*/
+  }
+  .padding {
+    height: 50px;
   }
 
 }
@@ -281,4 +287,11 @@ margin: 0 0 16px;
 
 .accent-green {
     color: #67cf6b;
+}
+
+.padding {
+  grid-area: padding;
+  background-color: #f1f6fb; /* Same color as the background */
+  box-shadow: none;
+  height: 20px;
 }
