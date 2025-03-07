@@ -37,3 +37,7 @@
   .artist-name {
    color: #909090;
   }
+
+  .song-title:hover {
+    text-decoration: underline;
+  }
