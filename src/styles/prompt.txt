@@ -1,0 +1,10 @@
+Generate a Spanish narrative about a character named Javier in a "bullicioso barrio" (busy neighborhood). The narrative should be around 100–120 words and include various tenses such as pretérito, condicional, and futuro (you may also use a compound tense like pretérito perfecto compuesto if needed). In the story, Javier has visited museums and tasted exquisite dishes that inspired him to change his life, and one day he found a mysterious invitation that pushed him to search for new horizons. Convincing himself that art would transform his future, he decided to embark on a unique adventure. Include a conditional clause and a future prediction.
+
+Then, output a JavaScript dictionary object named `narrativeDictionaryEntry2` with the following keys:
+- `paragraph`: The full narrative.
+- `paragraphWithBlanks`: The narrative text with only a few of the conjugated verbs replaced by blanks. Immediately after each blank, show the corresponding verb in its infinitive form in parentheses (make sure there is a space before the parenthesis).
+- `conjugatedVerbs`: An array containing only the conjugated verbs that were replaced by blanks.
+- `infinitiveVerbs`: An array with the corresponding infinitives for each replaced verb.
+- `tense`: An array with the Spanish labels for the tenses of each replaced verb (e.g., "pretérito", "condicional", "futuro").
+
+Do not include any context verbs (those not replaced by blanks) in the `conjugatedVerbs` and `tense` arrays. Output the result as a JavaScript code block.

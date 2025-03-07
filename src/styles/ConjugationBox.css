@@ -1,0 +1,27 @@
+.tenses-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.tense-item {
+  padding: 2px;
+  padding-inline: 5px;
+  background-color: #a1d795;
+  border-radius: 5px;
+  cursor: grab;
+}
+
+.blank {
+  display: inline-block;
+  width: 100px;
+  height: 22px;
+  background-color: #ffffff;
+  text-align: center;
+  line-height: 20px;
+  margin: 0 5px;
+  border: 1px solid #88b584;
+  border-radius: 5px;
+  outline: none;
+}
