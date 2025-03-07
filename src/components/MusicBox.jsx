@@ -10,7 +10,7 @@ const MusicBox = () => {
         <FaMusic style={{ color: '#dd4a4a' }} />
       </h2>
       <div className="inner-box pastel-red" style={{ display: 'flex', alignItems: 'left', padding: '10px' }}>
-        <div className="music-container">
+      <div className="music-container">
           <div className="play-button-container">
             <div className="play-button"></div>
           </div>

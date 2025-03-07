@@ -96,16 +96,16 @@ margin: 0 0 16px;
     height: 340px;
   }
   .card5{
-    height: 180px;
+    height: 160px;
   }
   .card6{
-    height: 500px;
+    height: 400px;
   }
   .card6 .inner-box{
     height: 100%;
   }
   .card7{
-    height: 180px;
+    height: 160px;
   }
 
 
@@ -228,14 +228,6 @@ margin: 0 0 16px;
 
   .card7 {
     grid-area: card7;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    padding: 12px 36px;
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding-bottom: 30px;
   }
 
 
@@ -250,7 +242,7 @@ margin: 0 0 16px;
 }
 
 .play-button-container {
-  margin: 10px;
+  margin: 8px;
   border-radius: 10px;
   background: #ffffff;
   padding: 22px;

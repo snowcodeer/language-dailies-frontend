@@ -11,9 +11,8 @@ const QuoteBox = () => {
       </h2>
       <div 
         className="inner-box pastel-purple" 
-        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#909090' }}
-      >
-        <p style={{ margin: '0', textAlign: 'center' }}><i>"Caminante, no hay camino."</i></p>
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#909090' }}>
+        <p style={{ margin: '0', textAlign: 'center' }}><i>"La última coca cola del desierto."</i></p>
       </div>
     </>
   );
