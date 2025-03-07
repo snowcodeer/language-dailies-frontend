@@ -7,7 +7,10 @@ const ConjugationBox = () => {
   const [selectedTense, setSelectedTense] = useState(null); // For mobile click selection
   const [droppedTenses, setDroppedTenses] = useState({});
   const [allFilled, setAllFilled] = useState(false);
+  const [allCorrect, setAllCorrect] = useState(false);
   const [shuffledTenses, setShuffledTenses] = useState([]);
+  const [inputValues, setInputValues] = useState({});
+  const [showInputFields, setShowInputFields] = useState(false);
 
   const narrativeDictionary = {
     paragraph:
@@ -34,13 +37,15 @@ const ConjugationBox = () => {
     ]
   };
 
-  // Check if all blanks are filled using the index of each blank word
+  // Check if all blanks are filled using the order of blanks (0, 1, 2, ...)
   useEffect(() => {
-    const allBlanksFilled = narrativeDictionary.paragraphWithBlanks
-      .split(' ')
-      .filter(word => word.includes('______'))
-      .every((_, index) => droppedTenses[index]);
+    // Count the number of blanks in the paragraph
+    const blanks = narrativeDictionary.paragraphWithBlanks.split(' ').filter(word => word.includes('______'));
+    const allBlanksFilled = blanks.every((_, blankIndex) => droppedTenses[blankIndex]);
     setAllFilled(allBlanksFilled);
+
+    const allBlanksCorrect = blanks.every((_, blankIndex) => droppedTenses[blankIndex] === narrativeDictionary.tense[blankIndex]);
+    setAllCorrect(allBlanksCorrect);
   }, [droppedTenses, narrativeDictionary.paragraphWithBlanks]);
 
   // Shuffle tenses on mount
@@ -49,32 +54,35 @@ const ConjugationBox = () => {
     const shuffleArray = (array) => {
       return array.sort(() => Math.random() - 0.5);
     };
-    setShuffledTenses(shuffleArray([...narrativeDictionary.tense]));
+    const uniqueTenses = [...new Set(narrativeDictionary.tense)];
+    setShuffledTenses(shuffleArray(uniqueTenses));
   }, []);
 
   // Desktop drag start: sets draggedTense
   const handleDragStart = (e, tense) => {
-    setDraggedTense(tense);
+    if (!allCorrect) {
+      setDraggedTense(tense);
+    }
   };
 
   // Common drop handler for both drag-and-drop and click-drop
-  const handleDrop = (e, index) => {
+  const handleDrop = (e, blankIndex) => {
     e.preventDefault();
-    const blankIndex =
-      index !== undefined ? index : e.target.getAttribute('data-index');
-    // Use draggedTense (desktop) or selectedTense (mobile click)
-    const tenseToDrop = draggedTense || selectedTense;
-    if (blankIndex !== null && tenseToDrop) {
-      setDroppedTenses(prev => ({ ...prev, [blankIndex]: tenseToDrop }));
-      // Optionally update blank style for visual feedback
-      const targetElement = e.target;
-      if (targetElement) {
-        targetElement.style.backgroundColor = '#a1d795';
-        targetElement.style.color = 'black';
+    if (!allCorrect && blankIndex !== null) {
+      // Use draggedTense (desktop) or selectedTense (mobile click)
+      const tenseToDrop = draggedTense || selectedTense;
+      if (blankIndex !== null && tenseToDrop) {
+        setDroppedTenses(prev => ({ ...prev, [blankIndex]: tenseToDrop }));
+        // Optionally update blank style for visual feedback
+        const targetElement = e.target;
+        if (targetElement && targetElement.classList.contains('blank')) {
+          targetElement.style.backgroundColor = '#a1d795';
+          targetElement.style.color = 'black';
+        }
+        // Clear both selections
+        setDraggedTense(null);
+        setSelectedTense(null);
       }
-      // Clear both selections
-      setDraggedTense(null);
-      setSelectedTense(null);
     }
   };
 
@@ -84,25 +92,54 @@ const ConjugationBox = () => {
 
   // Mobile click: tapping a tense to select it
   const handleTenseClick = (tense) => {
-    setSelectedTense(tense);
+    if (!allCorrect) {
+      setSelectedTense(tense);
+    }
   };
 
   // Mobile click on blank: drop the selected tense
-  const handleBlankClick = (index) => {
-    if (selectedTense) {
-      // Create a fake event with target set to the blank element for style update
-      const targetElement = document.querySelector(`[data-index="${index}"]`);
-      handleDrop({ preventDefault: () => {}, target: targetElement }, index);
+  const handleBlankClick = (blankIndex) => {
+    if (selectedTense && !allCorrect) {
+      const targetElement = document.querySelector(`[data-index="${blankIndex}"]`);
+      handleDrop({ preventDefault: () => {}, target: targetElement }, blankIndex);
     }
+  };
+
+  // When all blanks are filled, clicking the checkmark will remove incorrect answers
+  const handleCheck = () => {
+    // Create a new droppedTenses object by removing incorrect answers.
+    const newDropped = { ...droppedTenses };
+    for (let i = 0; i < narrativeDictionary.tense.length; i++) {
+      // Compare the dropped tense with the correct one from narrativeDictionary.tense.
+      // If they don't match, remove that entry.
+      if (newDropped[i] && newDropped[i] !== narrativeDictionary.tense[i]) {
+        delete newDropped[i];
+        // Reset blank style if available.
+        const targetElement = document.querySelector(`[data-index="${i}"]`);
+        if (targetElement && targetElement.classList.contains('blank')) {
+          targetElement.style.backgroundColor = '#ffffff';
+          targetElement.style.color = '#ffffff';
+        }
+      }
+    }
+    setDroppedTenses(newDropped);
+    setShowInputFields(true);
   };
 
   const handleUndo = () => {
     setDroppedTenses({});
     setSelectedTense(null);
+    setInputValues({});
+    setShowInputFields(false);
     document.querySelectorAll('.blank').forEach(blank => {
       blank.style.backgroundColor = '#ffffff';
       blank.style.color = '#ffffff';
     });
+  };
+
+  const handleInputChange = (e, index) => {
+    const { value } = e.target;
+    setInputValues(prev => ({ ...prev, [index]: value }));
   };
 
   return (
@@ -110,13 +147,11 @@ const ConjugationBox = () => {
       <h2>
         <span className="heading-text">Conjugación de hoy</span>
         {Object.keys(droppedTenses).length > 0 ? (
+          // If all blanks are filled, show the checkmark which on click removes incorrect answers.
           allFilled ? (
-            <FaCheck style={{ color: '#2a962e' }} />
+            <FaCheck style={{ color: '#2a962e', cursor: 'pointer' }} onClick={handleCheck} />
           ) : (
-            <FaUndo
-              style={{ color: '#2a962e', cursor: 'pointer' }}
-              onClick={handleUndo}
-            />
+            <FaUndo style={{ color: '#2a962e', cursor: 'pointer' }} onClick={handleUndo} />
           )
         ) : (
           <FaPencilAlt style={{ color: '#2a962e' }} />
@@ -127,12 +162,10 @@ const ConjugationBox = () => {
           {shuffledTenses.map((tense, index) => (
             <div
               key={index}
-              draggable
+              draggable={!allCorrect}
               onDragStart={(e) => handleDragStart(e, tense)}
               onClick={() => handleTenseClick(tense)}
-              className={`tense-item ${
-                selectedTense === tense ? 'selected' : ''
-              }`}
+              className={`tense-item ${selectedTense === tense ? 'selected' : ''}`}
             >
               {tense}
             </div>
@@ -140,25 +173,40 @@ const ConjugationBox = () => {
         </div>
         <div className="paragraph-container">
           <p onDrop={(e) => handleDrop(e)} onDragOver={handleDragOver}>
-            {narrativeDictionary.paragraphWithBlanks.split(' ').map((word, index) => {
-              if (word.includes('______')) {
-                return (
-                  <span
-                    key={index}
-                    data-index={index}
-                    className="blank"
-                    onDrop={(e) => handleDrop(e, index)}
-                    onDragOver={handleDragOver}
-                    onClick={() => handleBlankClick(index)}
-                    style={{ color: 'white' }}
-                  >
-                    {droppedTenses[index] || '______'}
-                  </span>
-                );
-              } else {
-                return <span key={index}>{word} </span>;
-              }
-            })}
+            {(() => {
+              let blankCounter = 0;
+              return narrativeDictionary.paragraphWithBlanks.split(' ').map((word, index) => {
+                if (word.includes('______')) {
+                  const currentBlankIndex = blankCounter;
+                  blankCounter++;
+                  return showInputFields ? (
+                    <input
+                      key={index}
+                      type="text"
+                      placeholder={droppedTenses[currentBlankIndex]}
+                      value={inputValues[currentBlankIndex] || ''}
+                      onChange={(e) => handleInputChange(e, currentBlankIndex)}
+                      className="input-field"
+                      style={{ textAlign: 'center' }}
+                    />
+                  ) : (
+                    <span
+                      key={index}
+                      data-index={currentBlankIndex}
+                      className="blank"
+                      onDrop={(e) => handleDrop(e, currentBlankIndex)}
+                      onDragOver={handleDragOver}
+                      onClick={() => handleBlankClick(currentBlankIndex)}
+                      style={{ color: 'white' }}
+                    >
+                      {droppedTenses[currentBlankIndex] || '______'}
+                    </span>
+                  );
+                } else {
+                  return <span key={index}>{word} </span>;
+                }
+              });
+            })()}
           </p>
         </div>
       </div>
