@@ -36,6 +36,11 @@
   overflow-y: auto;
 }
 
+.paragraph-container p {
+  line-height: 1.6 !important;
+}
+
+
 .input-field {
   display: inline-block;
   width: 100px;
