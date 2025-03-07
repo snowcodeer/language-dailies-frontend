@@ -15,8 +15,8 @@ const MusicBox = () => {
             <div className="play-button"></div>
           </div>
           <div className="song-details">
-            <div className="song-title neutral-text">Song Title</div>
-            <div className="artist-name grey-text">Artist Name</div>
+            <div className="song-title">Song Title</div>
+            <div className="artist-name">Artist Name</div>
           </div>
         </div>
       </div>

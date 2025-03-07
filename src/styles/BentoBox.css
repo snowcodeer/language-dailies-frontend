@@ -268,10 +268,11 @@ margin: 0 0 16px;
 
 .song-title {
   font-weight: bold;
+  color: #333333;
 }
 
 .artist-name {
-  /* Additional styling if needed */
+ color: #909090;
 }
 
 .pastel-green {
