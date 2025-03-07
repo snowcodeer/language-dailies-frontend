@@ -1,3 +1,4 @@
+
 .inner-box {
   overflow: hidden;
 }
@@ -11,11 +12,13 @@
 }
 
 .tense-item {
-  padding: 2px;
   padding-inline: 5px;
   background-color: #a1d795;
   border-radius: 5px;
   cursor: grab;
+  height: 22px;
+  line-height: 20px;
+  border: 1px solid #88b584;
 }
 
 .blank {
@@ -40,7 +43,8 @@
 .input-field {
   display: inline-block;
   width: 100px;
-  height: 22px;
+  height: 24px;
+  line-height: 20px;
   background-color: #ffffff;
   text-align: center;
   padding: 0px;
