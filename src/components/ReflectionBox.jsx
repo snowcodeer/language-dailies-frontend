@@ -6,6 +6,14 @@ import '../styles/ReflectionBox.css';
 const ReflectionBox = () => {
   const [reflection, setReflection] = useState('');
   const [showHistory, setShowHistory] = useState(false);
+  const [historyEntries, setHistoryEntries] = useState([
+    { date: '05.03.2025', text: 'Reflexión sobre el día 5' },
+    { date: '04.03.2025', text: 'Esto es muy cool!' },
+    { date: '03.03.2025', text: 'Reflexión sobre el día 3' },
+    { date: '02.03.2025', text: 'Reflexión sobre el día 2' },
+    { date: '01.03.2025', text: 'Reflexión sobre el día 1' },
+  ]);
+  const [selectedEntry, setSelectedEntry] = useState(null);
   const textareaRef = useRef(null);
 
   const handleReflectionChange = (e) => {
@@ -30,33 +38,51 @@ const ReflectionBox = () => {
   };
 
   const handleHistoryClick = () => {
-    setShowHistory(!showHistory);
+    if (selectedEntry) {
+      setSelectedEntry(null);
+    } else {
+      setShowHistory(!showHistory);
+    }
+  };
+
+  const saveReflection = () => {
+    const newEntry = {
+      date: new Date().toLocaleDateString('en-GB').split('/').join('.'),
+      text: reflection,
+    };
+    setHistoryEntries([newEntry, ...historyEntries]);
+    setReflection('');
   };
 
   const wordCount = reflection.trim().split(/\s+/).filter(Boolean).length;
-
-  const historyEntries = [
-    { date: '2023-10-01', text: 'Reflexión sobre el día 1' },
-    { date: '2023-10-02', text: 'Reflexión sobre el día 2' },
-    { date: '2023-10-03', text: 'Reflexión sobre el día 3' },
-    { date: '2023-10-04', text: 'Reflexión sobre el día 4' },
-    { date: '2023-10-05', text: 'Reflexión sobre el día 5' },
-  ];
 
   return (
     <>
       <h2 className="reflection-heading">
         <span className="heading-text">Reflexión diaria</span>
-        <FaLightbulb style={{ color: '#faae3c' }} />
+        {wordCount >= 60 ? (
+          <FaCheck style={{ color: '#67cf6b' }} onClick={saveReflection} />
+        ) : (
+          <FaLightbulb style={{ color: '#faae3c' }} />
+        )}
       </h2>
       {showHistory ? (
         <div className="inner-box pastel-yellow">
-          {historyEntries.map((entry, index) => (
-            <div key={index} className="history-entry">
-              <span className="history-date">{entry.date}</span>
-              <span className="history-text">{entry.text}</span>
+          {selectedEntry ? (
+            <div className="selected-entry">
+              <h3>{selectedEntry.date}</h3>
+              <p>{selectedEntry.text}</p>
             </div>
-          ))}
+          ) : (
+            historyEntries.map((entry, index) => (
+              <div key={index} className="history-entry-box" onClick={() => setSelectedEntry(entry)}>
+                <div className="history-entry">
+                  <span className="history-date"><strong>{entry.date}</strong>&nbsp;&nbsp;</span>
+                  <span className="history-text">{entry.text.length > 100 ? `${entry.text.substring(0, 100)}...` : entry.text}</span>
+                </div>
+              </div>
+            ))
+          )}
         </div>
       ) : (
         <textarea
@@ -74,24 +100,25 @@ const ReflectionBox = () => {
           <>
             <p className={`word-count grey-text ${wordCount >= 60 ? 'green' : ''}`}>Palabras: {wordCount}</p>
             
-            <div className="accent-buttons">
-              {['á', 'é', 'í', 'ó', 'ú', 'ñ', 'ü'].map((accent) => (
-                <button
-                  key={accent}
-                  className="accent-btn grey-text"
-                  onClick={() => insertAccent(accent)}
-                >
-                  {accent}
-                </button>
-              ))}
+            <div className="accent-buttons-wrapper">
+              <div className="accent-buttons">
+                {['á', 'é', 'í', 'ó', 'ú', 'ñ', 'ü'].map((accent) => (
+                  <button
+                    key={accent}
+                    className="accent-btn grey-text"
+                    onClick={() => insertAccent(accent)}
+                  >
+                    {accent}
+                  </button>
+                ))}
+              </div>
             </div>
           </>
         )}
-        <div className="reflection-buttons">
           <button className="reflection-btn historial" onClick={handleHistoryClick}>
             {showHistory ? <FaArrowLeft /> : <FaHistory />}
           </button>
-        </div>
+        
       </div>
     </>
   );

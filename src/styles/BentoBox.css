@@ -183,6 +183,7 @@ margin: 0 0 16px;
     margin-top: 0px;
     padding: 15px;
     position: relative;
+    overflow: auto;
   }
 
   .inner-box p {

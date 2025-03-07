@@ -22,7 +22,6 @@
   
 .reflection-controls {
     display: flex;
-    justify-content: space-between;
     align-items: end;
     width: 100%;
     max-width: 100%;  
@@ -32,6 +31,8 @@
 .word-count {
     font-size: 0.9rem;
     margin: 0;      
+    flex-shrink: 0; /* Prevent word count from shrinking */
+    width: 100px; /* Ensure enough space for word count */
 }
 
 .word-count.green {
@@ -56,12 +57,10 @@
     cursor: pointer;
 }
   
-.reflection-btn.correction {
-    background-color: #67cf6b;
-}
-  
 .reflection-btn.historial {
     background-color: #bebebe;
+    margin-left: auto;
+    
 }
 
 .accent-btn {
@@ -73,6 +72,55 @@
     font-size: 0.9rem;
     cursor: pointer;
     margin: 2px;
+}
+
+.accent-buttons-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    transform: translateX(-25px); /* Shift content 10px to the left */
+}
+
+.history-entry-box {
+    margin-bottom: 8px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ffffff; 
+    max-width: 100%; 
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    overflow: hidden; 
+    height: 20px; /* Increase height to fit the text */
+    display: flex;
+    align-items: center; /* Vertically align text in the middle */
+}
+
+.history-text {
+    padding: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: fit-content; /* Ensure the text takes the full width of the box */
+   
+}
+
+.selected-entry {
+    margin-top: 0;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ffffff; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 100%; /* Occupy the whole inner box */
+    overflow: auto; /* Allow scrolling if content overflows */
+}
+
+.selected-entry h3 {
+    margin-top: 5px;
+    margin-left: 15px;
+    margin-bottom: 5px;
+}
+
+.selected-entry p {
+    white-space: pre-wrap; /* Preserve whitespace and line breaks */
 }
 
 /* Add media query for mobile versions */
