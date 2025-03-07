@@ -9,29 +9,26 @@ const ConjugationBox = () => {
   const [shuffledTenses, setShuffledTenses] = useState([]);
 
   const narrativeDictionary = {
-    paragraph: "En el tranquilo pueblo, vivía Elena, quien siempre soñaba con explorar nuevos horizontes. Cada mañana, caminaba por sus calles y admiraba los detalles de la vida. Un día, encontró un mapa antiguo que relataba aventuras olvidadas. Inspirada, decidió prepararse para una travesía única. Hoy, trabaja en sus planes y estudia rutas misteriosas. Espero que el destino le regale encuentros sorprendentes y que descubra secretos ocultos. Mañana, partirá con esperanza para vivir momentos inolvidables, confiando en que cada paso la acerque a su sueño de libertad.",
-    paragraphWithBlanks: "En el tranquilo pueblo, vivía Elena, quien siempre ______ (soñar) con explorar nuevos horizontes. Cada mañana, caminaba por sus calles y admiraba los detalles de la vida. Un día, ______ (encontrar) un mapa antiguo que relataba aventuras olvidadas. Inspirada, decidió prepararse para una travesía única. Hoy, trabaja en sus planes y ______ (estudiar) rutas misteriosas. Espero que el destino le regale encuentros sorprendentes y que ______ (descubrir) secretos ocultos. Mañana, ______ (partir) con esperanza para vivir momentos inolvidables, confiando en que cada paso la acerque a su sueño de libertad.",
-    conjugatedVerbs: [
-      "soñaba",
-      "encontró",
-      "estudia",
-      "descubra",
-      "partirá"
-    ],
-    infinitiveVerbs: [
-      "soñar",
-      "encontrar",
-      "estudiar",
-      "descubrir",
-      "partir"
-    ],
-    tense: [
-      "imperfecto",
-      "pretérito",
-      "presente",
-      "subjuntivo",
-      "futuro"
-    ]
+    paragraph: "En un bullicioso barrio, Javier ha recorrido museos y degustado platos exquisitos que lo inspiraron a cambiar su destino. Un día, encontró una invitación misteriosa que lo impulsó a explorar nuevos horizontes y desafiar su rutina. Convencido de que el arte transformaría su futuro, decidió embarcarse en una aventura única y descubrir culturas diversas. Si tuviera la oportunidad, exploraría caminos inesperados para ampliar su visión. Mañana, partirá con determinación para descubrir un mundo lleno de inspiración y crecimiento personal real.",
+  paragraphWithBlanks: "En un bullicioso barrio, Javier ha recorrido museos y degustado platos exquisitos que lo inspiraron a cambiar su destino. Un día, ______ (encontrar) una invitación misteriosa que lo impulsó a explorar nuevos horizontes y desafiar su rutina. Convencido de que el arte transformaría su futuro, ______ (decidir) embarcarse en una aventura única y descubrir culturas diversas. Si tuviera la oportunidad, ______ (explorar) caminos inesperados para ampliar su visión. Mañana, ______ (partir) con determinación para descubrir un mundo lleno de inspiración y crecimiento personal real.",
+  conjugatedVerbs: [
+    "encontró",   // replaced by blank
+    "decidió",    // replaced by blank
+    "exploraría", // replaced by blank
+    "partirá"     // replaced by blank
+  ],
+  infinitiveVerbs: [
+    "encontrar",  // for "encontró"
+    "decidir",    // for "decidió"
+    "explorar",   // for "exploraría"
+    "partir"      // for "partirá"
+  ],
+  tense: [
+    "pretérito",   // for "encontró"
+    "pretérito",   // for "decidió"
+    "condicional", // for "exploraría"
+    "futuro"       // for "partirá"
+  ]
   };
 
   useEffect(() => {

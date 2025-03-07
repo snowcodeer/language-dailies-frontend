@@ -1,10 +1,14 @@
-Generate a Spanish narrative about a character named Javier in a "bullicioso barrio" (busy neighborhood). The narrative should be around 100–120 words and include various tenses such as pretérito, condicional, and futuro (you may also use a compound tense like pretérito perfecto compuesto if needed). In the story, Javier has visited museums and tasted exquisite dishes that inspired him to change his life, and one day he found a mysterious invitation that pushed him to search for new horizons. Convincing himself that art would transform his future, he decided to embark on a unique adventure. Include a conditional clause and a future prediction.
+Generate a general Spanish narrative story that follows this structure and guidelines:
 
-Then, output a JavaScript dictionary object named `narrativeDictionaryEntry2` with the following keys:
-- `paragraph`: The full narrative.
-- `paragraphWithBlanks`: The narrative text with only a few of the conjugated verbs replaced by blanks. Immediately after each blank, show the corresponding verb in its infinitive form in parentheses (make sure there is a space before the parenthesis).
-- `conjugatedVerbs`: An array containing only the conjugated verbs that were replaced by blanks.
-- `infinitiveVerbs`: An array with the corresponding infinitives for each replaced verb.
-- `tense`: An array with the Spanish labels for the tenses of each replaced verb (e.g., "pretérito", "condicional", "futuro").
+1. The narrative should be between 80 and 90 words.
+2. The story must incorporate a variety of tenses (e.g., imperfecto, pretérito, condicional, futuro) in its conjugated verbs.
+3. The narrative should be written as a single paragraph.
+4. Create a "paragraphWithBlanks" version where only a few key conjugated verbs are replaced by blanks. Immediately after each blank, include the corresponding infinitive form in parentheses (with a space before the parenthesis).
+5. Include arrays for:
+   - "conjugatedVerbs": containing only the conjugated verbs that were replaced by blanks.
+   - "infinitiveVerbs": the corresponding infinitive forms for those verbs.
+   - "tense": the Spanish labels for the tenses of each replaced verb (e.g., "pretérito", "condicional", "futuro", etc.).
+6. Do not include context verbs (those not replaced by blanks) in the "conjugatedVerbs" and "tense" arrays.
+7. Output the final result as a JavaScript code block defining a dictionary object.
 
-Do not include any context verbs (those not replaced by blanks) in the `conjugatedVerbs` and `tense` arrays. Output the result as a JavaScript code block.
+Example keys should be: "paragraph", "paragraphWithBlanks", "conjugatedVerbs", "infinitiveVerbs", and "tense".
