@@ -64,8 +64,6 @@ margin: 0 0 16px;
     grid-template-rows: auto; /* Adjust rows automatically */
     gap: 15px; /* Reduce gap between items */
     padding: 10px; /* Reduce padding */
-    padding-bottom: 40px; /* Add padding to the bottom */
-    margin-bottom: 20px; /* Add margin to the bottom */
     grid-template-areas:
       "card1"
       "card2"
