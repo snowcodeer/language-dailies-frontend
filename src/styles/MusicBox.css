@@ -1,0 +1,39 @@
+.music-container {
+    display: flex;
+    width: 100%;
+    gap: 15px;
+    flex: 1;
+    flex-direction: row; /* Stack horizontally */
+    overflow: hidden; /* Ensure it fits within the parent container */
+    align-items: center;
+  }
+  
+  .play-button {
+    margin: 8px;
+    border-radius: 10px;
+    border: none;
+    background: #ffffff;
+    padding: 18px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    aspect-ratio: 1 / 1; /* Ensure width is the same as height */
+    cursor: pointer
+  }
+  
+  .song-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .song-title {
+    font-weight: bold;
+    color: #333333;
+  }
+  
+  .artist-name {
+   color: #909090;
+  }
