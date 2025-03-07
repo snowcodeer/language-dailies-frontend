@@ -47,9 +47,9 @@ const ConjugationBox = () => {
     setDraggedTense(tense);
   };
 
-  const handleDrop = (e) => {
+  const handleDrop = (e, index) => {
     e.preventDefault();
-    const blankIndex = e.target.getAttribute('data-index');
+    const blankIndex = index !== undefined ? index : e.target.getAttribute('data-index');
     if (blankIndex !== null && draggedTense) {
       setDroppedTenses(prev => ({ ...prev, [blankIndex]: draggedTense }));
       e.target.style.backgroundColor = '#a1d795'; // Change color to match tense-items
@@ -60,6 +60,12 @@ const ConjugationBox = () => {
 
   const handleDragOver = (e) => {
     e.preventDefault();
+  };
+
+  const handleTap = (index) => {
+    if (draggedTense) {
+      handleDrop({ preventDefault: () => {} }, index);
+    }
   };
 
   const handleUndo = () => {
@@ -109,6 +115,7 @@ const ConjugationBox = () => {
                     className="blank"
                     onDrop={handleDrop}
                     onDragOver={handleDragOver}
+                    onClick={() => handleTap(index)} // Add tap to drop functionality
                     style={{ color: 'white' }} // Make the blank marker white
                   >
                     {droppedTenses[index] || '______'}
