@@ -12,7 +12,7 @@ const MusicBox = () => {
       <div className="inner-box pastel-red" style={{ display: 'flex', alignItems: 'left', padding: '10px' }}>
       <div className="music-container">
           <div className="play-button-container">
-            <div className="play-button"></div>
+            <div className="triangle"></div>
           </div>
           <div className="song-details">
             <div className="song-title">Song Title</div>

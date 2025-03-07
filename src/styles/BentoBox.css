@@ -257,20 +257,17 @@ margin: 0 0 16px;
   margin: 8px;
   border-radius: 10px;
   background: #ffffff;
-  padding: 22px;
+  padding: 25px;
+  padding-left: 20px;
+  padding-top: 20px;
+  padding-right: 30px;
   align-items: center;
   justify-content: center;
   text-align: center;
   display: flex;
+  flex-direction: column;
+  height: fit-content%;
   aspect-ratio: 1 / 1; /* Ensure width is the same as height */
-}
-
-.play-button {
-  width: 0;
-  height: 0;
-  border-left: 22px solid #ff4d4d; /* Accent red color */
-  border-top: 12px solid transparent;
-  border-bottom: 12px solid transparent;
 }
 
 .song-details {
@@ -285,6 +282,35 @@ margin: 0 0 16px;
 
 .artist-name {
  color: #909090;
+}
+
+.triangle {
+  position: relative;
+	background-color: #ff4d4d;
+	text-align: left;
+}
+.triangle:before,
+.triangle:after {
+	content: '';
+	position: absolute;
+	background-color: inherit;
+}
+.triangle,
+.triangle:before,
+.triangle:after {
+	width:  1em;
+	height: 1em;
+	border-top-right-radius: 30%;
+}
+
+.triangle {
+	transform: rotate(-90deg) skewX(-30deg) scale(1,.866);
+}
+.triangle:before {
+	transform: rotate(-135deg) skewX(-45deg) scale(1.414,.707) translate(0,-50%);
+}
+.triangle:after {
+	transform: rotate(135deg) skewY(-45deg) scale(.707,1.414) translate(50%);
 }
 
 .pastel-green {
