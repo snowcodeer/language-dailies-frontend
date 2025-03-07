@@ -11,6 +11,7 @@ const ConjugationBox = () => {
   const [shuffledTenses, setShuffledTenses] = useState([]);
   const [inputValues, setInputValues] = useState({});
   const [showInputFields, setShowInputFields] = useState(false);
+  const [verbAnswer, setVerbAnswer] = useState(false);
 
   const narrativeDictionary = {
     paragraph:
@@ -22,12 +23,6 @@ const ConjugationBox = () => {
       "decidió", // replaced by blank
       "exploraría", // replaced by blank
       "partirá" // replaced by blank
-    ],
-    infinitiveVerbs: [
-      "encontrar", // for "encontró"
-      "decidir",   // for "decidió"
-      "explorar",  // for "exploraría"
-      "partir"     // for "partirá"
     ],
     tense: [
       "pretérito",   // for "encontró"
@@ -125,6 +120,7 @@ const ConjugationBox = () => {
     setDroppedTenses(newDropped);
     if (Object.keys(newDropped).length === narrativeDictionary.tense.length) {
       setShowInputFields(true);
+      setVerbAnswer(true);
     }
   };
 
@@ -133,6 +129,7 @@ const ConjugationBox = () => {
     setSelectedTense(null);
     setInputValues({});
     setShowInputFields(false);
+    setVerbAnswer(false);
     document.querySelectorAll('.blank').forEach(blank => {
       blank.style.backgroundColor = '#ffffff';
       blank.style.color = '#ffffff';
@@ -144,6 +141,59 @@ const ConjugationBox = () => {
     setInputValues(prev => ({ ...prev, [index]: value }));
   };
 
+  // Check if all input fields are filled and correct
+  useEffect(() => {
+    if (showInputFields) {
+      const allInputsFilled = Object.keys(inputValues).length === narrativeDictionary.conjugatedVerbs.length &&
+        Object.values(inputValues).every(value => value.trim() !== '');
+      setAllFilled(allInputsFilled);
+
+      const allInputsCorrect = allInputsFilled && Object.keys(inputValues).every(index => 
+        inputValues[index].trim() === narrativeDictionary.conjugatedVerbs[index]
+      );
+      setAllCorrect(allInputsCorrect);
+
+      if (verbAnswer && allInputsCorrect) {
+        handleFinalCheck();
+      }
+    }
+  }, [inputValues, showInputFields, narrativeDictionary.conjugatedVerbs, verbAnswer]);
+
+  const handleFinalCheck = () => {
+    const allInputsCorrect = Object.keys(inputValues).every(index => 
+      inputValues[index].trim() === narrativeDictionary.conjugatedVerbs[index]
+    );
+    setAllCorrect(allInputsCorrect);
+    Object.keys(inputValues).forEach(index => {
+      const targetElement = document.querySelector(`input[data-index="${index}"]`);
+      if (targetElement) {
+        if (inputValues[index].trim() === narrativeDictionary.conjugatedVerbs[index]) {
+          targetElement.classList.add('correct');
+          targetElement.classList.remove('incorrect');
+        } else {
+          targetElement.classList.add('incorrect');
+          targetElement.classList.remove('correct');
+        }
+      }
+    });
+
+    setTimeout(() => {
+      if (allInputsCorrect) {
+        setTimeout(() => {
+          handleUndo();
+        }, 2500);
+      } else {
+        Object.keys(inputValues).forEach(index => {
+          const targetElement = document.querySelector(`input[data-index="${index}"]`);
+          if (targetElement) {
+            targetElement.classList.remove('correct');
+            targetElement.classList.remove('incorrect');
+          }
+        });
+      }
+    }, 2500);
+  };
+
   return (
     <>
       <h2>
@@ -151,7 +201,15 @@ const ConjugationBox = () => {
         {Object.keys(droppedTenses).length > 0 ? (
           // If all blanks are filled, show the checkmark which on click removes incorrect answers.
           allFilled ? (
-            <FaCheck style={{ color: '#2a962e', cursor: 'pointer' }} onClick={handleCheck} />
+            showInputFields ? (
+              allCorrect ? (
+                <FaCheck style={{ color: '#2a962e', cursor: 'pointer' }} />
+              ) : (
+                <FaCheck style={{ color: '#2a962e', cursor: 'pointer' }} onClick={handleFinalCheck} />
+              )
+            ) : (
+              <FaCheck style={{ color: '#2a962e', cursor: 'pointer' }} onClick={handleCheck} />
+            )
           ) : (
             <FaUndo style={{ color: '#2a962e', cursor: 'pointer' }} onClick={handleUndo} />
           )
@@ -190,6 +248,7 @@ const ConjugationBox = () => {
                       onChange={(e) => handleInputChange(e, currentBlankIndex)}
                       className="input-field"
                       style={{ textAlign: 'center' }}
+                      data-index={currentBlankIndex}
                     />
                   ) : (
                     <span

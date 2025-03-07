@@ -34,7 +34,6 @@
   display: flex; /* Adjust the height as needed */
   flex-direction: column;
   overflow-y: auto;
-  
 }
 
 .input-field {
@@ -51,4 +50,14 @@
   outline: none;
   color: #000;
   font-size: 1rem;
+}
+
+.correct {
+  background-color: #a1d795 !important; /* green */
+  transition: background-color 0.8s ease-in, background-color 0.8s ease-out 0.8s;
+}
+
+.incorrect {
+  background-color: #f8d7da !important; /* red */
+  transition: background-color 0.8s ease-in;
 }
