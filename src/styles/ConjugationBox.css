@@ -8,13 +8,13 @@
 }
 
 .tense-item {
-  padding-inline: 5px;
+  padding: 1px;
+  padding-inline: 7px;
   background-color: #a1d795;
   border-radius: 5px;
   cursor: grab;
-  height: 22px;
+  height: 21px;
   line-height: 20px;
-  border: 1px solid #88b584;
 }
 
 .blank {
@@ -25,7 +25,7 @@
   text-align: center;
   line-height: 20px;
   margin: 0 5px;
-  border: 1px solid #88b584;
+  border: 1px solid #a1d795;
   border-radius: 5px;
   outline: none;
 }
