@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { FaPencilAlt, FaUndo, FaCheck } from 'react-icons/fa';
+import { FaPencilAlt, FaUndo, FaCheck, FaMicrophone } from 'react-icons/fa';
 import '../styles/ConjugationBox.css';
 
 const ConjugationBox = () => {
   const [selectedTense, setSelectedTense] = useState(null); // For mobile click selection
   const [droppedTenses, setDroppedTenses] = useState({});
   const [allFilled, setAllFilled] = useState(false);
-  const [allCorrect, setAllCorrect] = useState(false);
+  const [tensesCorrect, setTensesCorrect] = useState(false);
   const [shuffledTenses, setShuffledTenses] = useState([]);
   const [inputTense, setInputTense] = useState({});
   const [showInputVerb, setShowInputVerb] = useState(false);
@@ -38,7 +38,7 @@ const ConjugationBox = () => {
     setAllFilled(allBlanksFilled);
 
     const allBlanksCorrect = blanks.every((_, blankIndex) => droppedTenses[blankIndex] === narrativeDictionary.tense[blankIndex]);
-    setAllCorrect(allBlanksCorrect);
+    setTensesCorrect(allBlanksCorrect);
   }, [droppedTenses, narrativeDictionary.paragraphWithBlanks]);
 
   // Shuffle tenses on mount
@@ -52,7 +52,7 @@ const ConjugationBox = () => {
 
   // Tapping a tense to select it
   const handleTenseClick = (tense) => {
-    if (!allCorrect && !showInputVerb) {
+    if (!tensesCorrect && !showInputVerb) {
       setSelectedTense(tense);
       document.body.style.cursor = 'grabbing'; // Change cursor to grabbing
     } 
@@ -64,7 +64,7 @@ const ConjugationBox = () => {
 
   // Click on blank: drop the selected tense
   const handleBlankClick = (blankIndex) => {
-    if (selectedTense && !allCorrect) {
+    if (selectedTense && !tensesCorrect) {
       setDroppedTenses(prev => ({ ...prev, [blankIndex]: selectedTense }));
       // Optionally update blank style for visual feedback
       const targetElement = document.querySelector(`[data-index="${blankIndex}"]`);
@@ -79,15 +79,15 @@ const ConjugationBox = () => {
   };
 
   const handleTenseMouseOver = (e) => {
-    if (!allCorrect && !showInputVerb) {
-      e.target.style.cursor = 'grabbing'; 
+    if (!tensesCorrect) {
+        e.target.style.cursor = 'grabbing'; 
     } else {
       e.target.style.cursor = 'help';
     }
   };
 
   const handleBlankMouseOver = (e) => {
-    if (selectedTense && !allCorrect) {
+    if (selectedTense && !tensesCorrect) {
       e.target.style.cursor = 'grabbing'; // Change cursor to indicate dropping
     }
   };
@@ -124,6 +124,7 @@ const ConjugationBox = () => {
       setDroppedTenses({});
       setSelectedTense(null);
       setInputTense({});
+      setAllFilled(false);
       document.querySelectorAll('.blank').forEach(blank => {
         blank.style.backgroundColor = '#ffffff';
         blank.style.color = '#ffffff';
@@ -145,24 +146,16 @@ const ConjugationBox = () => {
     if (showInputVerb) {
       const allInputsFilled = Object.keys(inputTense).length === narrativeDictionary.conjugatedVerbs.length &&
         Object.values(inputTense).every(value => value.trim() !== '');
-      setAllFilled(allInputsFilled);
-
-      const allInputsCorrect = allInputsFilled && Object.keys(inputTense).every(index => 
-        inputTense[index].trim() === narrativeDictionary.conjugatedVerbs[index]
-      );
-      setAllCorrect(allInputsCorrect);
-
-      if (allInputsCorrect) {
-        handleFinalCheck();
-      }
+        setAllFilled(allInputsFilled);
     }
   }, [inputTense, showInputVerb, narrativeDictionary.conjugatedVerbs]);
 
   const handleFinalCheck = () => {
+
     const allInputsCorrect = Object.keys(inputTense).every(index => 
       inputTense[index].trim() === narrativeDictionary.conjugatedVerbs[index]
     );
-    setAllCorrect(allInputsCorrect);
+    
     Object.keys(inputTense).forEach(index => {
       const targetElement = document.querySelector(`input[data-index="${index}"]`);
       if (targetElement) {
@@ -179,7 +172,20 @@ const ConjugationBox = () => {
     setTimeout(() => {
       if (allInputsCorrect) {
         setTimeout(() => {
-          handleUndo();
+          Object.keys(inputTense).forEach(index => {
+            const targetElement = document.querySelector(`input[data-index="${index}"]`);
+            if (targetElement) {
+              targetElement.classList.remove('correct');
+              targetElement.classList.remove('incorrect');
+            }
+          });
+          setShowInputVerb(false);
+          setTensesCorrect(false);
+          setAllFilled(false);
+          setDroppedTenses({});
+          setSelectedTense(null);
+          setInputTense({});
+  
         }, 2500);
       } else {
         Object.keys(inputTense).forEach(index => {
@@ -198,14 +204,10 @@ const ConjugationBox = () => {
       <h2>
         <span className="heading-text">Conjugación de hoy</span>
         {Object.keys(droppedTenses).length > 0 ? (
-          // If all blanks are filled, show the checkmark which on click removes incorrect answers.
           allFilled ? (
             showInputVerb ? (
-              allCorrect ? (
-                <FaCheck style={{ color: '#2a962e', cursor: 'pointer' }} />
-              ) : (
-                <FaCheck style={{ color: '#2a962e', cursor: 'pointer' }} onClick={handleFinalCheck} />
-              )
+               <FaCheck style={{ color: '#2a962e', cursor: 'pointer' }} onClick={handleFinalCheck} />
+              
             ) : (
               <FaCheck style={{ color: '#2a962e', cursor: 'pointer' }} onClick={handleCheck} />
             )

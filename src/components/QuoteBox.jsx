@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/BentoBox.css';
+import '../styles/QuoteBox.css';
 import { FaQuoteRight } from 'react-icons/fa';
 
 const QuoteBox = () => {
@@ -10,9 +10,11 @@ const QuoteBox = () => {
         <FaQuoteRight style={{ color: '#ad6be3' }}/> 
       </h2>
       <div 
-        className="inner-box pastel-purple" 
-        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#909090' }}>
-        <p style={{ margin: '0', textAlign: 'center' }}><i>"La última coca cola del desierto."</i></p>
+        className="inner-box pastel-purple" >
+        <div className="quote-container">
+          <p><i>"La última coca cola del desierto."</i></p>
+        </div>
+        
       </div>
     </>
   );
