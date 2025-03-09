@@ -6,7 +6,7 @@
 
 .stats-container {
   display: flex;
-  gap: 40px;
+  gap: 25px;
   flex: 1;
   padding: 3px;
   flex-direction: row; /* Stack horizontally */
