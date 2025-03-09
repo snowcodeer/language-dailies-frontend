@@ -10,7 +10,7 @@
   flex: 1;
   padding: 3px;
   flex-direction: row; /* Stack horizontally */
-  overflow: hidden; /* Ensure it fits within the parent container */
+  height: fit-content;
 }
 
 .stat-card {

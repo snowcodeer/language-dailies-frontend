@@ -8,7 +8,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
       <h1>
-        <span>¡Bienvenidas de nuevo, Natalie!</span>
+        <span>¡Bienvenido/a!</span>
         <FaCog style={{ color: '#999999' }} />
       </h1>
       <div className="stats-container">
