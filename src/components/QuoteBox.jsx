@@ -49,7 +49,7 @@ const QuoteBox = () => {
     // Helper function to conditionally render line breaks
     const renderLineBreaks = (text) => {
       const wordCount = text.split(' ').length;
-      return wordCount > 10 ? <br /> : (<><br /><br /></>);
+      return wordCount > 8 ? <br /> : (<><br /><br /></>);
     };
 
   return (
