@@ -1,18 +1,75 @@
-import React from 'react';
-import '../styles/BentoBox.css';
-import { FaQuoteRight } from 'react-icons/fa';
+import React, { useState } from 'react';
+import '../styles/QuoteBox.css';
+import { createPortal } from 'react-dom';
+import { FaQuoteRight, FaHeart, FaRegHeart } from 'react-icons/fa';
 
 const QuoteBox = () => {
+  const [flipped, setFlipped] = useState(false);
+  const [showHeart, setShowHeart] = useState(false);
+  const [liked, setLiked] = useState(false);
+  const [heartAnimations, setHeartAnimations] = useState([]);
+
+  const toggleFlip = () => {
+    setFlipped(prev => !prev);
+    if (!showHeart) {
+      setShowHeart(true);
+    }
+  };
+
+  const handleLikeClick = () => {
+    setLiked(prev => !prev);
+    if (!liked) {
+      addHeartAnimation();
+    }
+  };
+
+  const addHeartAnimation = () => {
+    const id = Date.now();
+    setHeartAnimations(prev => [...prev, id]);
+    setTimeout(() => {
+      setHeartAnimations(prev => prev.filter(heartId => heartId !== id));
+    }, 2000);
+  };
+
+  // Create a portal for heart animations rendered in a layer on top.
+    const heartAnimationPortal = createPortal(
+      <div className="heart-animation-portal2">
+        {heartAnimations.map(id => (
+          <div key={id} className="heart-animation2">
+            <FaHeart size={24} color="#ad6be3" />
+          </div>
+        ))}
+      </div>,
+      document.body
+    );
+
   return (
     <>
       <h2>
         <span className="heading-text">Frase del día</span>
-        <FaQuoteRight style={{ color: '#ad6be3'}}/> 
+        <div className="like-icon-container">
+                  {showHeart ? (
+                    liked ? (
+                      <FaHeart style={{ color: '#ad6be3', cursor: 'pointer' }} onClick={handleLikeClick} />
+                    ) : (
+                      <FaRegHeart style={{ color: '#ad6be3', cursor: 'pointer' }} onClick={handleLikeClick} />
+                    )
+                  ) : (
+                    <FaQuoteRight style={{ color: '#ad6be3' }} />
+                  )}
+                </div>
       </h2>
-      <div 
-        className="inner-box pastel-purple" style={{justifyContent: 'center' }} >
-          <p style={{ color: '#909090', textAlign: 'center', paddingTop:20}}><i>"La última coca cola del desierto."</i></p>  
+      <div className={`card ${flipped ? 'flipped' : ''}`} onClick={toggleFlip}>
+        <div className="content">
+          <div className="front pastel-purple">
+            "La última coca cola del desierto."
+          </div>
+          <div className="back">
+          Alguien que se tiene muy alta opinión de sí mismo.
+          </div>
+        </div>
       </div>
+      {heartAnimationPortal}
     </>
   );
 };

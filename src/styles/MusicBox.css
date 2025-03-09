@@ -84,6 +84,6 @@ animation: streamHearts 2s ease-out forwards;
 @media (max-width: 850px) {
   .heart-animation {
     bottom: 35%; 
-    left: 80%; 
+    left: 0%; 
   }
 }
