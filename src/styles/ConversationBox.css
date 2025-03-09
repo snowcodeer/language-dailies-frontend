@@ -1,0 +1,15 @@
+.conversation-container {
+    height: 100%;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+.circle {
+    width: 100px;
+    height: 100px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+  }
