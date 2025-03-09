@@ -92,7 +92,7 @@
     }
 
     /* Media query for mobile devices */
-    @media (max-width: 850px) {
+    @media (max-width: 1400px) {
     .heart-animation2 {
       bottom: 0%; 
       left: 0%; 
