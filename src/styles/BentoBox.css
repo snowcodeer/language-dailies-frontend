@@ -153,6 +153,7 @@ margin: 0 0 16px;
   }
   .padding {
     height: 50px;
+    z-index: -1;
   }
 
 }
