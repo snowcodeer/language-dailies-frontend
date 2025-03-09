@@ -43,6 +43,15 @@ const QuoteBox = () => {
       document.body
     );
 
+    const frontText = "La última coca cola del desierto.";
+    const backText = "Alguien que se tiene muy alta opinión de sí mismo.";
+
+    // Helper function to conditionally render line breaks
+    const renderLineBreaks = (text) => {
+      const wordCount = text.split(' ').length;
+      return wordCount > 10 ? <br /> : (<><br /><br /></>);
+    };
+
   return (
     <>
       <h2>
@@ -62,10 +71,12 @@ const QuoteBox = () => {
       <div className={`card ${flipped ? 'flipped' : ''}`} onClick={toggleFlip}>
         <div className="content">
           <div className="front pastel-purple">
-            "La última coca cola del desierto."
+          {renderLineBreaks(frontText)}
+            {frontText}
           </div>
           <div className="back">
-          Alguien que se tiene muy alta opinión de sí mismo.
+            {renderLineBreaks(backText)}
+            {backText}
           </div>
         </div>
       </div>
