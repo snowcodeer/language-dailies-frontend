@@ -132,6 +132,7 @@ const ConjugationBox = () => {
     setInputValues({});
     setShowInputFields(false);
     setVerbAnswer(false);
+    targetElement.classList.remove('correct');
     document.querySelectorAll('.blank').forEach(blank => {
       blank.style.backgroundColor = '#ffffff';
       blank.style.color = '#ffffff';
