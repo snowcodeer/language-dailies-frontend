@@ -10,23 +10,6 @@ import MusicBox from './MusicBox';
 import ConversationBox from './ConversationBox';
 
 const BentoBox = () => {
-  // State for the reflection text
-  const [reflection, setReflection] = useState('');
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  // Update state as the user types
-  const handleReflectionChange = (e) => {
-    setReflection(e.target.value);
-  };
-  
-  // Calculate word count (splits by whitespace and filters out empty strings)
-  const wordCount = reflection.trim().split(/\s+/).filter(Boolean).length;
-
-  // Toggle play/pause state
-  const togglePlayPause = () => {
-    setIsPlaying(!isPlaying);
-  };
-
   return (
     <div className="bento-container">
       <div className="bento-item card1">
@@ -54,7 +37,7 @@ const BentoBox = () => {
       </div>
 
       <div className="bento-item card7">
-        <MusicBox isPlaying={isPlaying} togglePlayPause={togglePlayPause} />
+        <MusicBox />
       </div>
 
       {window.innerWidth < 850 && (
