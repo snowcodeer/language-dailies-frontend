@@ -11,6 +11,7 @@
   padding: 3px;
   flex-direction: row; /* Stack horizontally */
   height: fit-content;
+  justify-content: space-evenly;
 }
 
 .stat-card {
