@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaPencilAlt, FaUndo, FaCheck, FaMicrophone } from 'react-icons/fa';
+import { FaPencilAlt, FaUndo, FaCheck } from 'react-icons/fa';
 import '../styles/ConjugationBox.css';
 
 const ConjugationBox = () => {
